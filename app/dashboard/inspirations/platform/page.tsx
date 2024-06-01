@@ -1,5 +1,7 @@
 import Search from '@/app/components/search'
 import Image from 'next/image';
+import ButtonWithIcon from '@/app/components/button-with-icon';
+import PlatformTable from '@/app/components/platform-table';
 
 function PlatformPage() {
   
@@ -15,22 +17,29 @@ function PlatformPage() {
           <div>
             <Search placeholder="Search" />
           </div>
-          <div>
-            <button
-              type="button"
-              className="bg-gray-50 border items-center font-medium border-gray-300 border-1 text-gray-900 text-sm rounded-lg focus:ring-purple-500 py-2 px-5  me-2 mb-2"
-            >
-              <Image
-                src="/svg/sort.svg"
-                alt="sort Icon"
-                width={15}
-                height={10}
-                className="inline-flex mr-2"
-              />
-              Action
-            </button>
+          <div className="py-2">
+         
+            <ButtonWithIcon
+              color="text-gray-900"
+              bg="bg-gray-50"
+              svg="/svg/sort.svg"
+              text="Action"
+            />
+            <ButtonWithIcon
+              color="text-gray-900"
+              bg="bg-gray-50"
+              svg="/svg/sort.svg"
+              text="Sort"
+            />
+            <ButtonWithIcon
+              color="text-white"
+              bg="bg-purple-600"
+              svg="/svg/plus.svg"
+              text="Add Platforms"
+            />
           </div>
         </div>
+            <PlatformTable query=''/>
       </div>
     </section>
   );

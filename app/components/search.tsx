@@ -17,7 +17,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
           <input
             type="text"
             id="search"
-            className="bg-gray-50 border border-gray-300 border-1 text-gray-700 text-sm rounded-lg focus:ring-purple-500 block w-full ps-10 p-2.5 px-8"
+            className="bg-gray-50 border border-gray-300 border-1 text-gray-700 text-sm rounded-lg focus:ring-purple-500 block w-full ps-10 p-2 px-8"
             placeholder={placeholder}
             onChange={(e) =>
             { handleSearch(e.target.value); }
