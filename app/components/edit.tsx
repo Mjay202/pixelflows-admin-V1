@@ -1,10 +1,40 @@
 'use client'
 
-import Badges from "./badges";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
+import BadgesWithIcon from "./badges-with-icon";
+
+interface Category {
+    id: number;
+        name: string;
+}
 
 export default function Edit() {
-    
+//     const Parent: React.FC = () => {
+//   const handleDelete = () => {
+//     alert();
+//   };
+    const [categories, setCategories] = useState<Category[]>([]);
+     const [inputValue, setInputValue] = useState('');
 
+    const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter" && inputValue.trim() !== '') {
+          const newCategory: Category = {
+            id: categories.length
+              ? categories[categories.length - 1].id + 1
+              : 1,
+            name: inputValue,
+          };
+        setCategories([...categories, newCategory]);
+        setInputValue(""); 
+        }
+        console.log(categories);
+    };
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    };
+    const handleSubmit = () => {
+        setCategories([]);
+    }
     return (
       <div>
         <button
@@ -66,7 +96,7 @@ export default function Edit() {
                       name="name"
                       id="name"
                       className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                      placeholder="Enter category name and press enter to save"
+                      placeholder="Enter Platform name"
                       required
                     />
                   </div>
@@ -81,22 +111,19 @@ export default function Edit() {
                       type="text"
                       name="categories"
                       id="categories"
+                      onChange={handleChange}
+                      value={inputValue}
+                      onKeyDown={handleKeyPress}
                       className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                      placeholder="Enter Platform name"
+                      placeholder="Enter category name and press enter to save"
                       required
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-5 gap-x-0 gap-y-1">
-                  
-                  <Badges name="Portfolios" />
-                  <Badges name="Portfolios" />
-                  <Badges name="Portfolios" />
-                  <Badges name="Portfolios" />
-                                <Badges name="Portfolios" />
-                                {
-                                    
-                                }
+                <div className="grid grid-cols-5 gap-x-0 gap-y-1 mt-6">
+                  {categories.map((category) => (
+                    <BadgesWithIcon name={category.name} />
+                  ))}
                 </div>
                 <div className="flex gap-x-3 justify-center mt-10">
                   <button
@@ -108,6 +135,7 @@ export default function Edit() {
                   </button>
                   <button
                     type="submit"
+                    onClick={handleSubmit}
                     className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-medium rounded-lg text-sm px-14 py-2.5 text-center"
                   >
                     Add platform
