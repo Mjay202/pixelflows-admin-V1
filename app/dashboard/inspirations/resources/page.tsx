@@ -1,8 +1,12 @@
+import Delete from "@/app/components/delete";
+import Edit from "@/app/components/edit";
+
 function ResourcesPage() {
   
   return (
     <section>
-      <h1>Resources</h1>
+      <Delete />
+      <Edit/>
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import Badges from "./badges";
 
 export default function PlatformTable({ query }: { query?: string }) {
     
@@ -25,9 +26,7 @@ export default function PlatformTable({ query }: { query?: string }) {
               <th scope="col" className="px-1 py-4 font-normal">
                 Platform Categories
               </th>
-              <th scope="col" className="px-1 py-4 font-normal">
-                
-              </th>
+              <th scope="col" className="px-1 py-4 font-normal"></th>
             </tr>
           </thead>
           <tbody className="text-xs font-normal">
@@ -55,9 +54,16 @@ export default function PlatformTable({ query }: { query?: string }) {
                 scope="row"
                 className="px-1 py-4 font-normal text-sm text-gray-900 whitespace-nowrap"
               >
-                Apple MacBook Pro 17"
+                <div className="grid grid-cols-5 gap-x-0 gap-y-1">
+                  <Badges name="Portfolios" />
+                  <Badges name="Portfolios" />
+                  <Badges name="Portfolios" />
+                  <Badges name="Portfolios" />
+                  <Badges name="Portfolios" />
+                  <Badges name="Portfolios" />
+                </div>
               </td>
-              
+
               <td className="flex items-center px-6 py-4">
                 <a
                   href="#"
