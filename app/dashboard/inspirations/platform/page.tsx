@@ -7,17 +7,17 @@ function PlatformPage() {
   
   return (
     <section>
-      <h1 className="text-xl font-semibold">Platforms</h1>
-      <h5 className="text-sm font-normal mt-3">
+      <h1 className="text-lg font-semibold">Platforms</h1>
+      <h5 className="text-sm font-normal mt-2">
         View and manage platforms and categories
       </h5>
 
-      <div className="pl-1 mt-6">
-        <div className="flex justify-between">
+      <div className="mt-3">
+        <div className="flex justify-between items-center">
           <div>
             <Search placeholder="Search" />
           </div>
-          <div className="py-2">
+          <div className="">
          
             <ButtonWithIcon
               color="text-gray-900"

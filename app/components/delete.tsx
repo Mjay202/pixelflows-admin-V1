@@ -46,15 +46,15 @@ export default function Delete() {
               </svg>
               <span className="sr-only">Close modal</span>
             </button>
-            <div className="p-4 md:p-5 text-center  flex flex-col items-center">
-              <div className="p-2 bg-rose-100 rounded-full border-8 mb-5 border-rose-50">
+            <div className="md:p-5 text-center flex flex-col items-center">
+              <div className="p-2 bg-rose-100 mt-6 rounded-full border-8 mb-5 border-rose-50">
                 <Svg src="bin" w={28} h={31} />
               </div>
 
-              <h3 className="mb-7 text-lg font-normal text-gray-500  dark:text-gray-400">
+              <h3 className="mb-7 text-lg font-semi-bold text-gray-500  dark:text-gray-400">
                 Are you sure you want to delete this platform?
               </h3>
-              <div>
+              <div className="mb-3">
                 <button
                   data-modal-hide="delete-modal"
                   type="button"
