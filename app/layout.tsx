@@ -30,12 +30,14 @@ export default function RootLayout({
           type="image/<generated>"
           sizes="<generated>"
         />
-        
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+          rel="stylesheet"
+        />
       </head>
       <body className={`${inter.className}`}>
         {children}
-        
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
       </body>
     </html>
   );
