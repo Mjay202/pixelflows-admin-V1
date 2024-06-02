@@ -3,10 +3,12 @@
 import ButtonWithIcon from "@/app/components/button-with-icon";
 import LandingPageTable from "@/app/dashboard/inspirations/resources/landing-pages-table";
 import Search from "@/app/components/search";
-import { initFlowbite, initTabs } from "flowbite";
+import { initTabs } from "flowbite";
+import LandingPage from "./landing-page";
+
 
 function ResourcesPage() {
-  initTabs();
+ 
   return (
     <section>
       <h1 className="text-lg font-semibold">Resources</h1>
@@ -22,11 +24,10 @@ function ResourcesPage() {
           // data-tabs-active-classes="text-purple-700 hover:text-purple-900 "
           // data-tabs-inactive-classes=" text-gray-500 hover:text-gray-600"
           role="tablist"
-          // onMouseDown={initFlowbite}
         >
           <li className="me-2" role="presentation">
             <button
-              className="inline-block p-4 border-b-2 rounded-t-lg font-normal"
+              className="inline-block p-4 border-b-2 rounded-t-lg  hover:text-gray-600 hover:border-gray-300"
               id="landing-pages-styled-tab"
               data-tabs-target="#styled-landing-pages"
               type="button"
@@ -40,7 +41,7 @@ function ResourcesPage() {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 "
+              className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300"
               id="web-styled-tab"
               data-tabs-target="#styled-web"
               onMouseDown={initTabs}
@@ -83,39 +84,7 @@ function ResourcesPage() {
         </ul>
       </div>
       <div id="default-styled-tab-content">
-        <div
-          className="hidden  rounded-lg"
-          id="styled-landing-pages"
-          role="tabpanel"
-          aria-labelledby="landing-pages-tab"
-        >
-          <div className="flex justify-between items-center">
-            <div>
-              <Search placeholder="Search" />
-            </div>
-            <div className="">
-              <ButtonWithIcon
-                color="text-gray-900"
-                bg="bg-gray-50"
-                svg="/svg/sort.svg"
-                text="Action"
-              />
-              <ButtonWithIcon
-                color="text-gray-900"
-                bg="bg-gray-50"
-                svg="/svg/sort.svg"
-                text="Sort"
-              />
-              <ButtonWithIcon
-                color="text-white"
-                bg="bg-purple-600"
-                svg="/svg/plus.svg"
-                text="Add Platforms"
-              />
-            </div>
-          </div>
-          <LandingPageTable />
-        </div>
+       <LandingPage/>
         <div
           className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
           id="styled-web"

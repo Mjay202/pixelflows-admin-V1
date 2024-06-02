@@ -2,10 +2,7 @@
 import Svg from "@/app/components/svg";
 import { initModals } from "flowbite";
 
-
-
 export default function Delete() {
- 
   return (
     <div>
       <button
@@ -41,7 +38,7 @@ export default function Delete() {
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                 />
               </svg>

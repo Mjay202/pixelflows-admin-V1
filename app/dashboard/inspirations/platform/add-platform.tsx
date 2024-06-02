@@ -39,25 +39,23 @@ export default function Add() {
   };
   return (
     <div>
-     
-        <button
-          type="button"
-          id="#add"
-          onMouseDown={initModals}
-          data-modal-target="add-modal"
-          data-modal-toggle="add-modal"
-          className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
-        >
-          <Image
-            src="/svg/plus.svg"
-            alt="Icon"
-            width={11}
-            height={11}
-            className="inline-flex mr-2"
-          />
-          Add Platforms
-        </button>
-     
+      <button
+        type="button"
+        id="#add"
+        onMouseDown={initModals}
+        data-modal-target="add-modal"
+        data-modal-toggle="add-modal"
+        className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
+      >
+        <Image
+          src="/svg/plus.svg"
+          alt="Icon"
+          width={11}
+          height={11}
+          className="inline-flex mr-2"
+        />
+        Add Platforms
+      </button>
 
       <div
         id="add-modal"
@@ -87,7 +85,7 @@ export default function Add() {
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    stroke-width="2"
+                    strokeWidth="2"
                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                   />
                 </svg>

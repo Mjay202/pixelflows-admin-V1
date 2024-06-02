@@ -1,10 +1,5 @@
 "use client";
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  MouseEvent,
-  useState,
-} from "react";
+import { ChangeEvent, KeyboardEvent, MouseEvent, useState } from "react";
 import { initModals } from "flowbite";
 import Svg from "@/app/components/svg";
 
@@ -82,7 +77,7 @@ export default function Edit() {
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    stroke-width="2"
+                    strokeWidth="2"
                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                   />
                 </svg>

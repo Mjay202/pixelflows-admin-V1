@@ -1,14 +1,15 @@
+import Svg from "@/app/components/svg";
 import Delete from "../platform/delete-platform";
 import Edit from "../platform/edit-platform";
-import Badges from "../../../components/badges";
+
 
 export default function LandingPageTable({ query }: { query?: string }) {
   return (
-    <div className="relative mt-2 lg:mt-3 shadow-sm border sm:rounded-lg mb-32">
-      <table className="w-full relative md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500 ">
+    <div className="relative mt-2 lg:mt-3  sm:rounded-lg mb-32">
+      <table className="w-full relative border-x md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500 ">
         <thead className="text-xs border-b text-gray-900 border-t bg-white  hover:bg-gray-50 items-center">
           <tr className="">
-            <th scope="col" className="p-4">
+            <th scope="col" className="p-3">
               <div className="flex items-center">
                 <input
                   id="checkbox-all-search"
@@ -21,17 +22,17 @@ export default function LandingPageTable({ query }: { query?: string }) {
                 </label>
               </div>
             </th>
-            <th scope="col" className="px-1 py-4 font-medium">
+            <th scope="col" className="px-1 py-3 font-medium">
               Company
             </th>
 
-            <th scope="col" className="py-4 font-medium">
+            <th scope="col" className="py-3 font-medium">
               Continent
             </th>
-            <th scope="col" className="py-4 mx-0 font-medium">
+            <th scope="col" className="py-3 mx-0 font-medium">
               Description
             </th>
-            <th scope="col" className="py-4 font-medium">
+            <th scope="col" className="py-3 font-medium">
               Actions
             </th>
           </tr>
@@ -57,25 +58,25 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -101,25 +102,25 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -145,25 +146,25 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -189,25 +190,25 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -233,25 +234,25 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -277,25 +278,25 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -321,25 +322,113 @@ export default function LandingPageTable({ query }: { query?: string }) {
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-500 font-thin"> catalogapp.io</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
               </div>
             </th>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Asia
             </td>
             <td
               scope="row"
-              className="px-0 py-4 font-light text-xs text-gray-600 whitespace-nowrap"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
               Brings all your news into one place
             </td>
 
             <td
               scope="row"
-              className="px-0 py-4 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+            >
+              <Edit />
+              <Delete />
+            </td>
+          </tr>
+          <tr className="bg-white border-b hover:bg-gray-50">
+            <td className="w-4 p-4">
+              <div className="flex items-center">
+                <input
+                  id="checkbox-table-search-1"
+                  type="checkbox"
+                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
+                  required
+                />
+                <label htmlFor="checkbox-table-search-1" className="sr-only">
+                  checkbox
+                </label>
+              </div>
+            </td>
+            <th
+              scope="row"
+              className="px-1 py-3 font-medium text-xs  whitespace-nowrap"
+            >
+              <div className="flex flex-col gap-0.5">
+                <span className="text-gray-900 font"> Catalog</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
+              </div>
+            </th>
+            <td
+              scope="row"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
+            >
+              Asia
+            </td>
+            <td
+              scope="row"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
+            >
+              Brings all your news into one place
+            </td>
+
+            <td
+              scope="row"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
+            >
+              <Edit />
+              <Delete />
+            </td>
+          </tr>
+          <tr className="bg-white border-b hover:bg-gray-50">
+            <td className="w-4 p-4">
+              <div className="flex items-center">
+                <input
+                  id="checkbox-table-search-1"
+                  type="checkbox"
+                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
+                  required
+                />
+                <label htmlFor="checkbox-table-search-1" className="sr-only">
+                  checkbox
+                </label>
+              </div>
+            </td>
+            <th
+              scope="row"
+              className="px-1 py-3 font-medium text-xs  whitespace-nowrap"
+            >
+              <div className="flex flex-col gap-0.5">
+                <span className="text-gray-900 font"> Catalog</span>
+                <span className="text-gray-700 font-thin"> catalogapp.io</span>
+              </div>
+            </th>
+            <td
+              scope="row"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
+            >
+              Asia
+            </td>
+            <td
+              scope="row"
+              className="px-0 py-3 font-normal text-xs text-gray-900 whitespace-nowrap"
+            >
+              Brings all your news into one place
+            </td>
+
+            <td
+              scope="row"
+              className="px-0 py-3 font-normal text-xs text-gray-600 whitespace-nowrap inline-flex justify-start items-center gap-x-5"
             >
               <Edit />
               <Delete />
@@ -347,6 +436,74 @@ export default function LandingPageTable({ query }: { query?: string }) {
           </tr>
         </tbody>
       </table>
+
+      <div className="mt-10 " id="pagination">
+        <nav aria-label="Page navigation">
+          <ul className=" gap-2 text-sm flex items-center justify-between">
+            <li>
+              <a
+                href="#"
+                className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-700 hover:text-gray-900"
+              >
+                <Svg src="arrow-left" w={9} h={9} />
+                Previous
+              </a>
+            </li>
+            <div className="flex">
+              <li>
+                <a
+                  href="#"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  1
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  2
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  aria-current="page"
+                  className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                >
+                  3
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  4
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  5
+                </a>
+              </li>
+            </div>
+            <li>
+              <a
+                href="#"
+                className="flex gap-2 items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-700 hover:text-gray-900"
+              >
+                Next
+                <Svg src="arrow-right" w={9} h={9} />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }
