@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { initDropdowns } from "flowbite";
+import { initDropdowns, initAccordions } from "flowbite";
 
 type LayoutProps = {
   children: ReactNode;
@@ -106,7 +106,7 @@ function Layout({ children }: LayoutProps) {
             <li>
               <button
                 type="button"
-                onMouseDown={initDropdowns}
+                onMouseDown={initAccordions}
                 className="flex items-center w-full p-3 text-base text-white transition duration-300 rounded-md group hover:bg-slate-700 "
                 aria-controls="inspirations"
                 data-collapse-toggle="inspirations"
