@@ -101,8 +101,8 @@ export default function LandingPageTable({ query }: { query?: string }) {
               className="px-1 py-3 font-medium text-xs  whitespace-nowrap"
             >
               <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900 font"> Catalog</span>
-                <span className="text-gray-700 font-thin"> catalogapp.io</span>
+                <span className="text-gray-900"> Catalog</span>
+                <span className="text-gray-700 font-light"> catalogapp.io</span>
               </div>
             </th>
             <td

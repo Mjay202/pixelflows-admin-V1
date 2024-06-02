@@ -5,7 +5,7 @@ import Edit from "./edit-platform";
 
 export default function PlatformTable({ query }: { query?: string }) {
   return (
-    <div className="relative mt-2 lg:mt-3 shadow-sm border sm:rounded-lg mb-32">
+    <div className="relative mt-5 lg:mt-3 shadow-sm border sm:rounded-lg mb-32">
       <table className="w-full relative md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-gray-900 border-t bg-white font-light hover:bg-gray-50">
           <tr>
@@ -22,13 +22,15 @@ export default function PlatformTable({ query }: { query?: string }) {
                 </label>
               </div>
             </th>
-            <th scope="col" className="px-1 py-4 font-normal">
+            <th scope="col" className="px-1 py-4 font-medium">
               Platform
             </th>
-            <th scope="col" className="px-1 py-4 font-normal">
+            <th scope="col" className="px-1 py-4 font-medium">
               Platform Categories
             </th>
-            <th scope="col" className="px-1 py-4 font-normal"></th>
+            <th scope="col" className="px-1 py-4 font-medium ">
+              
+            </th>
           </tr>
         </thead>
         <tbody className="text-xs font-normal">
@@ -99,7 +101,7 @@ export default function PlatformTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-4  font-normal text-xs text-gray-900 whitespace-nowrap"
             >
-              <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-x-2 gap-y-3">
+              <div className="grid grid-cols-5 gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />
                 <Badges name="Business" />
                 <Badges name="Finance" />
@@ -142,7 +144,7 @@ export default function PlatformTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-4  font-normal text-xs text-gray-900 whitespace-nowrap"
             >
-              <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-x-2 gap-y-3">
+              <div className="grid grid-cols-5 gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />
                 <Badges name="Business" />
                 <Badges name="Finance" />
@@ -185,7 +187,7 @@ export default function PlatformTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-4  font-normal text-xs text-gray-900 whitespace-nowrap"
             >
-              <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-x-2 gap-y-3">
+              <div className="grid grid-cols-5 gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />
                 <Badges name="Business" />
                 <Badges name="Finance" />
