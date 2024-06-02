@@ -1,7 +1,7 @@
 'use client'
 
-import { ChangeEvent, KeyboardEvent, useState } from "react";
-import BadgesWithIcon from "./badges-with-icon";
+import { ChangeEvent, KeyboardEvent, MouseEvent, MouseEventHandler, useState } from "react";
+import Svg from "./svg";
 
 interface Category {
     id: number;
@@ -9,29 +9,34 @@ interface Category {
 }
 
 export default function Edit() {
-//     const Parent: React.FC = () => {
-//   const handleDelete = () => {
-//     alert();
-//   };
-    const [categories, setCategories] = useState<Category[]>([]);
-     const [inputValue, setInputValue] = useState('');
 
-    const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter" && inputValue.trim() !== '') {
-          const newCategory: Category = {
-            id: categories.length
-              ? categories[categories.length - 1].id + 1
-              : 1,
-            name: inputValue,
-          };
-        setCategories([...categories, newCategory]);
-        setInputValue(""); 
-        }
-        console.log(categories);
-    };
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value);
-    };
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && inputValue.trim() !== '') {
+      const newCategory: Category = {
+        id: categories.length
+          ? categories[categories.length - 1].id + 1
+          : 1,
+        name: inputValue,
+      };
+      setCategories([...categories, newCategory]);
+      setInputValue("");
+    }
+    console.log(categories);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const deleteCat = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+    
+    e.preventDefault();
+    console.log("Delete button clicked", id);
+    setCategories(categories.filter((cat) => cat.id !== id));
+  };
     const handleSubmit = () => {
         setCategories([]);
     }
@@ -40,10 +45,10 @@ export default function Edit() {
         <button
           data-modal-target="edit-modal"
           data-modal-toggle="edit-modal"
-          className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          className="block text-white"
           type="button"
         >
-          Toggle modal
+        <Svg src="edit" w={16} h={16} />
         </button>
 
         <div
@@ -122,7 +127,14 @@ export default function Edit() {
                 </div>
                 <div className="grid grid-cols-5 gap-x-0 gap-y-1 mt-6">
                   {categories.map((category) => (
-                    <BadgesWithIcon name={category.name} />
+                    <div key={category.id}>
+                      <span className="bg-purple-100 text-xs font-medium m-0 inline-flex items-center gap-1 justify-self-center px-1.5 py-0.5 rounded-full hover:">
+                        {category.name}
+                        <button onMouseDown={(e) => deleteCat(e, category.id)}>
+                          <Svg src="close" w={8} h={8} />
+                        </button>
+                      </span>
+                    </div>
                   ))}
                 </div>
                 <div className="flex gap-x-3 justify-center mt-10">
