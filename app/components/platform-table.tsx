@@ -1,3 +1,4 @@
+
 import Badges from "./badges";
 import Delete from "./delete";
 import Edit from "./edit";
@@ -5,9 +6,9 @@ import Edit from "./edit";
 export default function PlatformTable({ query }: { query?: string }) {
     
     return (
-      <div className="relative mt-2 shadow-md sm:rounded-lg mb-24">
+      <div className="relative mt-2 lg:mt-4 shadow-md sm:rounded-lg mb-24">
         <table className="w-full relative overflow-x-auto text-sm text-left rtl:text-right text-gray-500">
-          <thead className="text-sm text-gray-900 bg-white font-light hover:bg-gray-50">
+          <thead className="text-sm text-gray-900 border-t bg-white font-light hover:bg-gray-50">
             <tr>
               <th scope="col" className="p-4">
                 <div className="flex items-center">

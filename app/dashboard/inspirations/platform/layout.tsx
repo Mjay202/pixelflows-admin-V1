@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react';
+import { initDropdowns } from 'flowbite';
+
 
 type LayoutProps = {
   children: ReactNode;

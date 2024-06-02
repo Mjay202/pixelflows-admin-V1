@@ -1,17 +1,19 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import type { ReactNode } from 'react';
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
+import { initDropdowns } from "flowbite";
 
 type LayoutProps = {
   children: ReactNode;
 };
 
+initDropdowns;
 function Layout({ children }: LayoutProps) {
-   const pathname = usePathname();
+  const pathname = usePathname();
   return (
-    <section className='bg-white'>
+    <section className="bg-white">
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
@@ -29,7 +31,7 @@ function Layout({ children }: LayoutProps) {
         >
           <path
             clip-rule="evenodd"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
         </svg>
@@ -208,7 +210,9 @@ function Layout({ children }: LayoutProps) {
               <Link
                 href="/dashboard/settings"
                 className={` ${
-                  pathname === "/dashboard/settings" ? "text-purple-300" : "text-white "
+                  pathname === "/dashboard/settings"
+                    ? "text-purple-300"
+                    : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
                 <Image
@@ -224,13 +228,7 @@ function Layout({ children }: LayoutProps) {
         </div>
       </aside>
 
-      <div className="p-t px-16 mt-14 sm:ml-64 bg-white">
-       
-      
-          {children}
-
-        
-      </div>
+      <div className="p-t px-16 mt-14 sm:ml-64 bg-white">{children}</div>
     </section>
   );
 }
