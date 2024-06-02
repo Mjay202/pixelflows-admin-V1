@@ -32,7 +32,7 @@ export default function LandingPage() {
               color="text-white"
               bg="bg-purple-600"
               svg="/svg/plus.svg"
-              text="Add Platforms"
+              text="Add Company"
             />
           </div>
         </div>
