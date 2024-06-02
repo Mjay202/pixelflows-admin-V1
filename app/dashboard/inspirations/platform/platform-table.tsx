@@ -56,7 +56,7 @@ export default function PlatformTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 pt-2 pb-4 font-normal text-xs text-gray-900 whitespace-nowrap"
             >
-              <div className="grid lg:grid-cols-5 sm:grid-cols-2 gap-x-2 gap-y-3">
+              <div className="grid grid-cols-5  gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />
                 <Badges name="Business" />
                 <Badges name="Finance" />

@@ -107,7 +107,7 @@ function Layout({ children }: LayoutProps) {
             <li>
               <button
                 type="button"
-                onClick={initDropdowns}
+                // onClick={initDropdowns}
                 onDoubleClick={initFlowbite}
                 className="flex items-center w-full p-3 text-base text-white transition duration-300 rounded-md group hover:bg-slate-700 "
                 aria-controls="inspirations"
