@@ -1,6 +1,7 @@
 "use client";
+import Svg from "@/app/components/svg";
 import { initModals } from "flowbite";
-import Svg from "./svg";
+
 
 
 export default function Delete() {

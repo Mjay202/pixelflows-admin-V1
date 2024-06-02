@@ -1,10 +1,10 @@
-import Search from '@/app/components/search'
-import Image from 'next/image';
-import ButtonWithIcon from '@/app/components/button-with-icon';
-import PlatformTable from '@/app/components/platform-table';
+import Search from "@/app/components/search";
+import Image from "next/image";
+import ButtonWithIcon from "@/app/components/button-with-icon";
+import PlatformTable from "@/app/dashboard/inspirations/platform/platform-table";
+import Add from "./add-platform";
 
 function PlatformPage() {
-  
   return (
     <section>
       <h1 className="text-lg font-semibold">Platforms</h1>
@@ -17,8 +17,7 @@ function PlatformPage() {
           <div>
             <Search placeholder="Search" />
           </div>
-          <div className="">
-         
+          <div className="flex">
             <ButtonWithIcon
               color="text-gray-900"
               bg="bg-gray-50"
@@ -31,15 +30,10 @@ function PlatformPage() {
               svg="/svg/sort.svg"
               text="Sort"
             />
-            <ButtonWithIcon
-              color="text-white"
-              bg="bg-purple-600"
-              svg="/svg/plus.svg"
-              text="Add Platforms"
-            />
+            <Add/>
           </div>
         </div>
-            <PlatformTable query=''/>
+        <PlatformTable query="" />
       </div>
     </section>
   );

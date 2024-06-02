@@ -1,19 +1,15 @@
 "use client";
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  MouseEvent,
-  useState,
-} from "react";
-import Svg from "./svg";
+import { ChangeEvent, KeyboardEvent, MouseEvent, useState } from "react";
 import { initModals } from "flowbite";
+import Svg from "@/app/components/svg";
+import Image from "next/image";
 
 interface Category {
   id: number;
   name: string;
 }
 
-export default function Edit() {
+export default function Add() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -43,19 +39,28 @@ export default function Edit() {
   };
   return (
     <div>
-      <button
-        id="#edit"
-        onMouseDown={initModals}
-        data-modal-target="edit-modal"
-        data-modal-toggle="edit-modal"
-        className="block text-white"
-        type="button"
-      >
-        <Svg src="edit" w={16} h={16} />
-      </button>
+     
+        <button
+          type="button"
+          id="#add"
+          onMouseDown={initModals}
+          data-modal-target="add-modal"
+          data-modal-toggle="add-modal"
+          className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
+        >
+          <Image
+            src="/svg/plus.svg"
+            alt="Icon"
+            width={11}
+            height={11}
+            className="inline-flex mr-2"
+          />
+          Add Platforms
+        </button>
+     
 
       <div
-        id="edit-modal"
+        id="add-modal"
         tab-index="-1"
         aria-hidden="true"
         className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -64,12 +69,12 @@ export default function Edit() {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
               <h3 className="text-sm font-bold text-gray-900 ">
-                Edit a Platform
+                Add a Platform
               </h3>
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                data-modal-toggle="edit-modal"
+                data-modal-toggle="add-modal"
               >
                 <svg
                   className="w-3 h-3"
@@ -143,7 +148,7 @@ export default function Edit() {
               <div className="flex gap-x-3 justify-center mt-10">
                 <button
                   type="button"
-                  data-modal-hide="edit-modal"
+                  data-modal-hide="add-modal"
                   className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
                 >
                   Cancel
