@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { initDropdowns, initAccordions } from "flowbite";
+import { initDropdowns, initAccordions, initFlowbite } from "flowbite";
 
 type LayoutProps = {
   children: ReactNode;
 };
 
-initDropdowns;
+
 function Layout({ children }: LayoutProps) {
   const pathname = usePathname();
   return (
@@ -18,6 +18,7 @@ function Layout({ children }: LayoutProps) {
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
         aria-controls="separator-sidebar"
+        onMouseDown={initDropdowns}
         type="button"
         className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
@@ -106,7 +107,8 @@ function Layout({ children }: LayoutProps) {
             <li>
               <button
                 type="button"
-                onMouseDown={initAccordions}
+                onClick={initDropdowns}
+                onDoubleClick={initFlowbite}
                 className="flex items-center w-full p-3 text-base text-white transition duration-300 rounded-md group hover:bg-slate-700 "
                 aria-controls="inspirations"
                 data-collapse-toggle="inspirations"
