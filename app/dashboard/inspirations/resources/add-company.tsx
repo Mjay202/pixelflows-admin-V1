@@ -339,7 +339,6 @@ export default function Add() {
                   data-modal-hide="add-modal-2"
                   data-modal-toggle="add-modal-2"
                   data-modal-target="add-modal-2"
-                  //   data-modal-toggle="add-modal-1"
                   className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
                 >
                   Save

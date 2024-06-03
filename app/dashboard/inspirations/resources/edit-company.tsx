@@ -315,10 +315,11 @@ export default function Edit() {
                   Go back
                 </button>
                 <button
-                                  type="submit"
-                                  onMouseDown={handleSubmit}
-                  data-modal-hide="edit-modal-1"
-                  //   data-modal-toggle="edit-modal-1"
+                  type="submit"
+                  onMouseDown={handleSubmit}
+                  data-modal-hide="edit-modal-2"
+                  data-modal-toggle="edit-modal-2"
+                  data-modal-target="edit-modal-2"
                   className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
                 >
                   Save
