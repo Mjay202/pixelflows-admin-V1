@@ -1,14 +1,13 @@
 "use client";
 
 import ButtonWithIcon from "@/app/components/button-with-icon";
-import LandingPageTable from "@/app/dashboard/inspirations/resources/landing-pages-table";
+import LandingPageTable from "@/app/dashboard/inspirations/resources/landing-page/landing-pages-table";
 import Search from "@/app/components/search";
 import { initTabs } from "flowbite";
-import LandingPage from "./landing-page";
-
+import LandingPage from "./landing-page/landing-page";
+import WebPage from "./web/web-page";
 
 function ResourcesPage() {
- 
   return (
     <section>
       <h1 className="text-lg font-semibold">Resources</h1>
@@ -85,20 +84,7 @@ function ResourcesPage() {
       </div>
       <div id="default-styled-tab-content">
         <LandingPage />
-        <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="styled-web"
-          role="tabpanel"
-          aria-labelledby="web-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              web tab's associated content
-            </strong>
-          </p>
-          <div className="block">Table here</div>
-        </div>
+        <WebPage/>
         <div
           className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
           id="styled-android"
