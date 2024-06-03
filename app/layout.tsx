@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import 'flowbite';
-import { useEffect } from "react";
+import { Toaster, toast } from "sonner";
 
 
 
@@ -36,6 +36,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className}`}>
+        <Toaster position="top-right" richColors/>
         {children}
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"

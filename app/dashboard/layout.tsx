@@ -13,7 +13,7 @@ type LayoutProps = {
 function Layout({ children }: LayoutProps) {
   const pathname = usePathname();
   return (
-    <section className="bg-white">
+    <section className="bg-white font-inter text-sm">
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
@@ -41,12 +41,12 @@ function Layout({ children }: LayoutProps) {
           <Link href="/dashboard" className="flex items-center ps-2.5 mb-5">
             <Image
               src="/svg/logo.svg"
-              width={20}
-              height={20}
+              width={24}
+              height={24}
               className="me-1"
               alt="logo"
             />
-            <span className="self-center text-lg font-normal whitespace-nowrap text-white">
+            <span className="self-center text-xl font-normal whitespace-nowrap text-white">
               Pixelflow
             </span>
           </Link>
@@ -62,10 +62,10 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/home.svg"
                   alt="Home Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs">Home</span>
+                <span className="ms-4 font-light text-sm">Home</span>
               </Link>
             </li>
             <li className="">
@@ -80,10 +80,10 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/users.svg"
                   alt="Users Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs ">Users</span>
+                <span className="ms-4 font-light text-sm ">Users</span>
               </Link>
             </li>
             <li className="">
@@ -98,17 +98,17 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/team.svg"
                   alt="Team Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs">Team mates</span>
+                <span className="ms-4 font-light text-sm">Team mates</span>
               </Link>
             </li>
             <li>
               <button
                 type="button"
                 // onClick={initDropdowns}
-                onClick={initFlowbite}
+                onMouseOver={initFlowbite}
                 className="flex items-center w-full p-3 text-base text-white transition duration-300 rounded-md group hover:bg-slate-700 "
                 aria-controls="inspirations"
                 data-collapse-toggle="inspirations"
@@ -116,34 +116,42 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/bulb.svg"
                   alt="Bulb Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs flex-1 text-left rtl:text-right whitespace-nowrap">
+                <span className="ms-4 font-light text-sm flex-1 text-left rtl:text-right whitespace-nowrap">
                   Inspirations
                 </span>
                 <Image
                   src="/svg/arrow-down.svg"
                   alt="Arrow Icon"
-                  width={10}
-                  height={5}
+                  width={11}
+                  height={6}
                 />
               </button>
               <ul id="inspirations" className="hidden py-2 space-y-2">
                 <li>
                   <Link
                     href="/dashboard/inspirations/platform"
-                    className="flex items-center p-3 ml-6 hover:bg-slate-700 transition duration-300  rounded-md text-white group"
+                    className={` ${
+                      pathname === "/dashboard/inspirations/platform"
+                        ? "text-purple-300"
+                        : "text-white "
+                    } flex items-center p-3 ml-6 hover:bg-slate-700 rounded-md transition duration-300`}
                   >
-                    <span className="ms-4 font-light text-xs">Platform</span>
+                    <span className="ms-4 font-light text-sm">Platform</span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/dashboard/inspirations/resources"
-                    className="flex items-center p-3 ml-6 hover:bg-slate-700 transition duration-300  rounded-md text-white group"
+                    className={` ${
+                      pathname === "/dashboard/inspirations/resources"
+                        ? "text-purple-300"
+                        : "text-white "
+                    } flex items-center p-3 ml-6 hover:bg-slate-700 rounded-md transition duration-300`}
                   >
-                    <span className="ms-4 font-light text-xs">Resources</span>
+                    <span className="ms-4 font-light text-sm">Resources</span>
                   </Link>
                 </li>
               </ul>
@@ -161,10 +169,10 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/figma.svg"
                   alt="UI Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs">UI Assets</span>
+                <span className="ms-4 font-light text-sm">UI Assets</span>
               </Link>
             </li>
             <li className="">
@@ -179,10 +187,10 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/job.svg"
                   alt="Job Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs">Job Boards</span>
+                <span className="ms-4 font-light text-sm">Job Boards</span>
               </Link>
             </li>
             <li className="">
@@ -197,10 +205,10 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/book.svg"
                   alt="Book Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs">Knowledge</span>
+                <span className="ms-4 font-light text-sm">Knowledge</span>
               </Link>
             </li>
             <li className="">
@@ -215,10 +223,10 @@ function Layout({ children }: LayoutProps) {
                 <Image
                   src="/svg/settings.svg"
                   alt="Settings Icon"
-                  width={14}
-                  height={14}
+                  width={16}
+                  height={17}
                 />
-                <span className="ms-4 font-light text-xs">Settings</span>
+                <span className="ms-4 font-light text-sm">Settings</span>
               </Link>
             </li>
           </ul>

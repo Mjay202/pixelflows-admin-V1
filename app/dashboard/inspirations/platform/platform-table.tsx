@@ -7,7 +7,7 @@ export default function PlatformTable({ query }: { query?: string }) {
   return (
     <div className="relative mt-5 lg:mt-3 shadow-sm border sm:rounded-lg mb-32">
       <table className="w-full relative md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500">
-        <thead className="text-xs text-gray-900 border-t bg-white font-light hover:bg-gray-50">
+        <thead className="text-sm text-gray-900 border-t bg-white  hover:bg-gray-50">
           <tr>
             <th scope="col" className="p-4">
               <div className="flex items-center">
@@ -33,7 +33,7 @@ export default function PlatformTable({ query }: { query?: string }) {
             </th>
           </tr>
         </thead>
-        <tbody className="text-xs font-normal">
+        <tbody className="text-sm font-medium">
           <tr className="bg-white border-b hover:bg-gray-50">
             <td className="w-4 p-4">
               <div className="flex items-center">
@@ -50,13 +50,13 @@ export default function PlatformTable({ query }: { query?: string }) {
             </td>
             <th
               scope="row"
-              className="px-1 py-4 font-medium text-xs text-gray-900 whitespace-nowrap"
+              className="px-1 py-4 text-gray-900 whitespace-nowrap"
             >
               Landing pages
             </th>
             <td
               scope="row"
-              className="px-0 pt-2 pb-4 font-normal text-xs text-gray-900 whitespace-nowrap"
+              className="px-0 pt-2 pb-4 text-gray-900 whitespace-nowrap"
             >
               <div className="grid grid-cols-5  gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />
@@ -93,13 +93,13 @@ export default function PlatformTable({ query }: { query?: string }) {
             </td>
             <th
               scope="row"
-              className="px-1 py-4 font-medium text-xs text-gray-900 whitespace-nowrap"
+              className="px-1 py-4 text-gray-900 whitespace-nowrap"
             >
               Web
             </th>
             <td
               scope="row"
-              className="px-0 py-4  font-normal text-xs text-gray-900 whitespace-nowrap"
+              className="px-0 py-4  text-gray-900 whitespace-nowrap"
             >
               <div className="grid grid-cols-5 gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />
@@ -136,7 +136,7 @@ export default function PlatformTable({ query }: { query?: string }) {
             </td>
             <th
               scope="row"
-              className="px-1 py-4 font-medium text-xs text-gray-900 whitespace-nowrap"
+              className="px-1 py-4 text-gray-900 whitespace-nowrap"
             >
               Android
             </th>
@@ -179,13 +179,13 @@ export default function PlatformTable({ query }: { query?: string }) {
             </td>
             <th
               scope="row"
-              className="px-1 py-4 font-medium text-xs text-gray-900 whitespace-nowrap"
+              className="px-1 py-4 text-gray-900 whitespace-nowrap"
             >
               IOS
             </th>
             <td
               scope="row"
-              className="px-0 py-4  font-normal text-xs text-gray-900 whitespace-nowrap"
+              className="px-0 py-4   text-gray-900 whitespace-nowrap"
             >
               <div className="grid grid-cols-5 gap-x-2 gap-y-3">
                 <Badges name="Portfolios" />

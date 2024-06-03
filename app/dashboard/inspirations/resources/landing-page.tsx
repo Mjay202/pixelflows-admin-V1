@@ -1,6 +1,7 @@
 import ButtonWithIcon from "@/app/components/button-with-icon";
 import LandingPageTable from "./landing-pages-table";
 import Search from "@/app/components/search";
+import Add from "./add-company";
 
 
 export default function LandingPage() {
@@ -15,7 +16,7 @@ export default function LandingPage() {
           <div>
             <Search placeholder="Search" />
           </div>
-          <div className="">
+          <div className="flex">
             <ButtonWithIcon
               color="text-gray-900"
               bg="bg-gray-50"
@@ -28,12 +29,7 @@ export default function LandingPage() {
               svg="/svg/sort.svg"
               text="Sort"
             />
-            <ButtonWithIcon
-              color="text-white"
-              bg="bg-purple-600"
-              svg="/svg/plus.svg"
-              text="Add Company"
-            />
+            <Add/>
           </div>
         </div>
         <LandingPageTable />

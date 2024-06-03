@@ -3,17 +3,15 @@ import { ChangeEvent, KeyboardEvent, MouseEvent, useState } from "react";
 import { initModals } from "flowbite";
 import Svg from "@/app/components/svg";
 import { toast } from "sonner";
-import ButtonWithIcon from "@/app/components/button-with-icon";
-import Image from "next/image";
-import { isPromise } from "util/types";
 
 interface Category {
   id: number;
   name: string;
 }
 
-export default function Add() {
-  // Category UI logic
+export default function Edit() {
+
+    // Category UI logic
   const [categories, setCategories] = useState<Category[]>([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -37,47 +35,30 @@ export default function Add() {
     e.preventDefault();
     console.log("Delete button clicked", id);
     setCategories(categories.filter((cat) => cat.id !== id));
-  };
+    };
+    
 
-  const addCancel = () => {
-    toast.warning("Adding process has been cancelled!");
-  };
-  const handleSubmit = () => {
-    const promise = () =>
-      new Promise((resolve) =>
-        setTimeout(() => resolve({ name: "Company" }), 2000)
-      );
-
-    toast.promise(promise, {
-      loading: "Loading...",
-      success: (data :any) => {
-        return `${data.name} has been added`;
-      },
-      error: "Error",
-    });
-  };
+    const editCancel = () => {
+        toast.warning('Edit has been cancelled!');
+    }
+    const handleSubmit = () => {
+        toast.success('Company edited succesfully!');
+    }
   return (
     <div>
       <button
-        id="#add1"
+        id="#edit1"
         onMouseDown={initModals}
-        data-modal-target="add-modal-1"
-        data-modal-toggle="add-modal-1"
-        className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
+        data-modal-target="edit-modal-1"
+        data-modal-toggle="edit-modal-1"
+        className="block text-white"
         type="button"
       >
-        <Image
-          src="/svg/plus.svg"
-          alt="Icon"
-          width={11}
-          height={11}
-          className="inline-flex mr-2"
-        />
-        Add Company
+        <Svg src="edit" w={16} h={16} />
       </button>
 
       <div
-        id="add-modal-1"
+        id="edit-modal-1"
         tab-index="-1"
         aria-hidden="true"
         className="hidden overflow-y-auto overflow-x-hidden fixed px-4 mt-2 top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -86,14 +67,14 @@ export default function Add() {
           <div className="relative bg-white rounded-lg shadow ">
             <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
               <h3 className="text-sm font-bold text-gray-900 ">
-                Add a company{" "}
+                Edit a company{" "}
                 <span className="text-purple-600">(Landing Page)</span>
               </h3>
               <button
                 type="button"
-                onMouseDown={addCancel}
+                onMouseDown={editCancel}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                data-modal-toggle="add-modal-1"
+                data-modal-toggle="edit-modal-1"
               >
                 <svg
                   className="w-3 h-3"
@@ -196,17 +177,17 @@ export default function Add() {
               <div className="flex gap-x-3 justify-center mt-10 mb-3">
                 <button
                   type="button"
-                  onMouseDown={addCancel}
-                  data-modal-hide="add-modal"
+                  onMouseDown={editCancel}
+                  data-modal-hide="edit-modal"
                   className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
-                  data-modal-target="add-modal-2"
-                  data-modal-toggle="add-modal-2"
-                  data-modal-hide="add-modal-1"
+                  data-modal-target="edit-modal-2"
+                  data-modal-toggle="edit-modal-2"
+                  data-modal-hide="edit-modal-1"
                   className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
                 >
                   Next
@@ -217,7 +198,7 @@ export default function Add() {
         </div>
       </div>
       <div
-        id="add-modal-2"
+        id="edit-modal-2"
         tab-index="-2"
         aria-hidden="true"
         className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 px-4 left-0 z-50  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -226,15 +207,15 @@ export default function Add() {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
               <h3 className="text-sm font-bold text-gray-900 ">
-                Add a company 2{" "}
+                Edit a company 2{" "}
                 <span className="text-purple-600">(Landing Page)</span>
               </h3>
               <button
                 type="button"
-                onMouseDown={addCancel}
+                onMouseDown={editCancel}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                data-modal-toggle="add-modal-2"
-                data-modal-hide="add-modal-1"
+                data-modal-toggle="edit-modal-2"
+                data-modal-hide="edit-modal-1"
               >
                 <svg
                   className="w-3 h-3"
@@ -325,21 +306,19 @@ export default function Add() {
               <div className="flex gap-x-3 justify-center mt-10 mb-3">
                 <button
                   type="button"
-                  data-modal-toggle="add-modal-1"
-                  data-modal-target="add-modal-1"
-                  data-modal-hide="add-modal-2"
+                  data-modal-toggle="edit-modal-1"
+                  data-modal-target="edit-modal-1"
+                  data-modal-hide="edit-modal-2"
                   className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
                 >
                   <span className="sr-only">Close modal</span>
                   Go back
                 </button>
                 <button
-                  type="button"
-                  onMouseDown={handleSubmit}
-                  data-modal-hide="add-modal-2"
-                  data-modal-toggle="add-modal-2"
-                  data-modal-target="add-modal-2"
-                  //   data-modal-toggle="add-modal-1"
+                                  type="submit"
+                                  onMouseDown={handleSubmit}
+                  data-modal-hide="edit-modal-1"
+                  //   data-modal-toggle="edit-modal-1"
                   className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
                 >
                   Save
