@@ -1,0 +1,279 @@
+"use client";
+import { ChangeEvent, KeyboardEvent, MouseEvent, useState } from "react";
+import { initModals } from "flowbite";
+import Svg from "@/app/components/svg";
+import { toast } from "sonner";
+import Image from "next/image";
+
+interface Category {
+  id: number;
+  name: string;
+}
+
+export default function Add() {
+  
+  const addCancel = () => {
+    toast.warning("Adding process has been cancelled!");
+  };
+  const handleSubmit = () => {
+    const promise = () =>
+      new Promise((resolve) =>
+        setTimeout(() => resolve({ name: "job" }), 2000)
+      );
+
+    toast.promise(promise, {
+      loading: "Loading...",
+      success: (data: any) => {
+        return `${data.name} has been added`;
+      },
+      error: "Error",
+    });
+  };
+  return (
+    <div>
+      <button
+        id="#add1"
+        onMouseDown={initModals}
+        data-modal-target="add-modal-3"
+        data-modal-toggle="add-modal-3"
+        className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
+        type="button"
+      >
+        <Image
+          src="/svg/plus.svg"
+          alt="Icon"
+          width={11}
+          height={11}
+          className="inline-flex mr-2"
+        />
+        Post a job
+      </button>
+
+      <div
+        id="add-modal-3"
+        tab-index="-1"
+        aria-hidden="true"
+        className="hidden overflow-y-auto overflow-x-hidden fixed px-4 mt-2 top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div className="relative p-2 w-full mt-3  max-w-md max-h-full">
+          <div className="relative bg-white rounded-lg shadow ">
+            <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
+              <h3 className="text-sm font-bold text-gray-900 ">
+                Add a job post<span className="text-purple-600">(Web)</span>
+              </h3>
+              <button
+                type="button"
+                onMouseDown={addCancel}
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                data-modal-toggle="add-modal-3"
+              >
+                <svg
+                  className="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </button>
+            </div>
+
+            <form className="p-3 md:p-4 mt-2">
+              <div className="grid gap-6 mb-4 grid-cols-2">
+                {/* <div className="col-span-2 grid grid-cols-2 gap-3">
+                  <div className="flex flex-col">
+                    <label
+                      htmlFor="logo"
+                      className="block mb-2 text-sm font-semibold text-gray-900"
+                    >
+                      Job Title
+                    </label>
+                    <div className="px-3 py-3 border-dashed rounded  border-2 border-purple-300 bg-transparent flex justify-center align-center">
+                      <button>
+                        <Svg src="upload" w={20} h={20} />
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="logo"
+                      className="block mb-2 text-sm font-semibold text-gray-900"
+                    >
+                      job Thumbnail
+                    </label>
+                    <div className="px-3 py-3 border-dashed rounded border-2 border-purple-300 bg-transparent flex justify-center align-center">
+                      <button>
+                        <Svg src="upload" w={20} h={20} />
+                      </button>
+                    </div>
+                  </div>
+                </div> */}
+                <div className="col-span-2">
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-semibold text-gray-900"
+                  >
+                    Job Title<span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
+                    placeholder="Enter job name"
+                    required
+                  />
+                </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="website"
+                    className="block mb-2 text-sm font-semibold text-gray-900"
+                  >
+                    Job Description<span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="website"
+                    id="website"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
+                    placeholder="Enter category website and press enter to save"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-x-3 justify-center mt-10 mb-3">
+                <button
+                  type="button"
+                  onMouseDown={addCancel}
+                  data-modal-hide="add-modal"
+                  className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  data-modal-target="add-modal-4"
+                  data-modal-toggle="add-modal-4"
+                  data-modal-hide="add-modal-3"
+                  className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
+                >
+                  Next
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        id="add-modal-4"
+        tab-index="-2"
+        aria-hidden="true"
+        className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 px-4 left-0 z-50  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div className="relative p-2  w-full max-w-md max-h-full">
+          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
+              <h3 className="text-sm font-bold text-gray-900 ">
+                Add a job 2 <span className="text-purple-600">(Web)</span>
+              </h3>
+              <button
+                type="button"
+                onMouseDown={addCancel}
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                data-modal-toggle="add-modal-4"
+                data-modal-hide="add-modal-3"
+              >
+                <svg
+                  className="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </button>
+            </div>
+
+            <form className="p-3 md:p-4">
+              <div className="grid gap-6 mb-4 grid-cols-2">
+                
+                <div className="col-span-2">
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-semibold text-gray-900"
+                  >
+                    Select collection<span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="collection"
+                    id="collection"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
+                    placeholder="Enter category name and press enter to save"
+                    required
+                  />
+                </div>
+                <div className="col-span-2">
+                  <label
+                    htmlFor="website"
+                    className="block mb-2 text-sm font-semibold text-gray-900"
+                  >
+                    Location<span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="website"
+                    id="website"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
+                    placeholder="Select location"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-x-3 justify-center mt-10 mb-3">
+                <button
+                  type="button"
+                  data-modal-toggle="add-modal-3"
+                  data-modal-target="add-modal-3"
+                  data-modal-hide="add-modal-4"
+                  className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
+                >
+                  <span className="sr-only">Close modal</span>
+                  Go back
+                </button>
+                <button
+                  type="button"
+                  onMouseDown={handleSubmit}
+                  data-modal-hide="add-modal-4"
+                  data-modal-toggle="add-modal-4"
+                  data-modal-target="add-modal-4"
+                  className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

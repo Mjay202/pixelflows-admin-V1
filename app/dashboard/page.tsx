@@ -2,7 +2,8 @@ function DashboardPage() {
   
   return (
     <div className="text-black">
-      dashboard home
+      <h1 className="text-lg font-semibold">Home</h1>
+      <h5 className="text-sm font-normal mt-2">Welcome, Samuel.</h5>
     </div>
   );
 }
