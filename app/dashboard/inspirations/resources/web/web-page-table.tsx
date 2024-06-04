@@ -1,6 +1,7 @@
 import Svg from "@/app/components/svg";
 import Edit from "./edit-company";
 import Delete from "./delete-company";
+import AddScreen from "./add-screen";
 
 
 export default function WebTable({ query }: { query?: string }) {
@@ -87,9 +88,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -140,9 +139,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -193,9 +190,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -246,9 +241,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -299,9 +292,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -352,9 +343,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -405,9 +394,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -458,9 +445,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -511,9 +496,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>
@@ -564,9 +547,7 @@ export default function WebTable({ query }: { query?: string }) {
               <button>
                 <Svg src="view" w={16} h={11} />
               </button>
-              <button>
-                <Svg src="add" w={12} h={12} />
-              </button>
+              <AddScreen/>
               <Edit/>
               <Delete/>
             </td>

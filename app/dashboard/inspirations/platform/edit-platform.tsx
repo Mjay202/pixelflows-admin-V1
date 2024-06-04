@@ -2,6 +2,7 @@
 import { ChangeEvent, KeyboardEvent, MouseEvent, useState } from "react";
 import { initModals } from "flowbite";
 import Svg from "@/app/components/svg";
+import { toast } from "sonner";
 
 interface Category {
   id: number;
@@ -33,8 +34,9 @@ export default function Edit() {
     console.log("Delete button clicked", id);
     setCategories(categories.filter((cat) => cat.id !== id));
   };
-  const handleSubmit = () => {
-    setCategories([]);
+
+  const onCancel = () => {
+    toast.warning('Editing process cancelled!');
   };
   return (
     <div>
@@ -138,6 +140,7 @@ export default function Edit() {
               <div className="flex gap-x-3 justify-center mt-10">
                 <button
                   type="button"
+                  onMouseDown={onCancel}
                   data-modal-hide="edit-modal"
                   className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
                 >
@@ -145,10 +148,10 @@ export default function Edit() {
                 </button>
                 <button
                   type="submit"
-                  onClick={handleSubmit}
+                  // onClick={handleSubmit}
                   className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-medium rounded-lg text-sm px-14 py-2.5 text-center"
                 >
-                  Add platform
+                Edit platform
                 </button>
               </div>
             </form>

@@ -35,7 +35,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} font-inter`}>
         <Toaster position="top-right" richColors/>
         {children}
         <script

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { initDropdowns, initAccordions, initFlowbite } from "flowbite";
+import { initDropdowns, initFlowbite } from "flowbite";
 
 type LayoutProps = {
   children: ReactNode;
