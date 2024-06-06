@@ -24,7 +24,7 @@ export default function AddScreen() {
         <Svg src="add" w={12} h={12} />
       </button>
 
-      <div
+      <div  
         id="add-modal"
         tab-index="-1"
         aria-hidden="true"

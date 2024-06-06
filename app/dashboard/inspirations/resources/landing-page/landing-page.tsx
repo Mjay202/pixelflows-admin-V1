@@ -7,7 +7,7 @@ export default function LandingPage() {
   return (
     <div
       className="hidden  rounded-lg"
-      id="styled-landing-pages"
+      id="landing-pages"
       role="tabpanel"
       aria-labelledby="landing-pages-tab"
     >

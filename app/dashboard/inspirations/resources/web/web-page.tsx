@@ -8,7 +8,7 @@ export default function WebPage() {
   return (
     <div
       className="hidden  rounded-lg"
-      id="styled-web"
+      id="web"
       role="tabpanel"
       aria-labelledby="web-tab"
     >

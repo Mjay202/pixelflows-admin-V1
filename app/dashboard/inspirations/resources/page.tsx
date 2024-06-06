@@ -28,7 +28,7 @@ function ResourcesPage() {
             <button
               className="inline-block p-4 border-b-2 rounded-t-lg  hover:text-gray-600 hover:border-gray-300"
               id="landing-pages-styled-tab"
-              data-tabs-target="#styled-landing-pages"
+              data-tabs-target="#landing-pages"
               type="button"
               role="tab"
               onMouseDown={initTabs}
@@ -42,7 +42,7 @@ function ResourcesPage() {
             <button
               className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300"
               id="web-styled-tab"
-              data-tabs-target="#styled-web"
+              data-tabs-target="#web"
               onMouseDown={initTabs}
               type="button"
               role="tab"
@@ -56,7 +56,7 @@ function ResourcesPage() {
             <button
               className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300"
               id="android-styled-tab"
-              data-tabs-target="#styled-android"
+              data-tabs-target="#android"
               onMouseDown={initTabs}
               type="button"
               role="tab"
@@ -70,7 +70,7 @@ function ResourcesPage() {
             <button
               className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 "
               id="ios-styled-tab"
-              data-tabs-target="#styled-ios"
+              data-tabs-target="#ios"
               onMouseDown={initTabs}
               type="button"
               role="tab"
@@ -87,7 +87,7 @@ function ResourcesPage() {
         <WebPage/>
         <div
           className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="styled-android"
+          id="android"
           role="tabpanel"
           aria-labelledby="android-tab"
         >
@@ -101,7 +101,7 @@ function ResourcesPage() {
         </div>
         <div
           className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
-          id="styled-ios"
+          id="ios"
           role="tabpanel"
           aria-labelledby="ios-tab"
         >

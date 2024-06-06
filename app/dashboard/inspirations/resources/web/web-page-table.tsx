@@ -2,6 +2,7 @@ import Svg from "@/app/components/svg";
 import Edit from "./edit-company";
 import Delete from "./delete-company";
 import AddScreen from "./add-screen";
+import Link from "next/link";
 
 
 export default function WebTable({ query }: { query?: string }) {
@@ -85,12 +86,13 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -136,12 +138,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -187,12 +189,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -238,12 +240,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -289,12 +291,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -340,12 +342,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -391,12 +393,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -442,12 +444,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -493,12 +495,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
           <tr className="bg-white border-b hover:bg-gray-50">
@@ -544,12 +546,12 @@ export default function WebTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/inspirations/resources/web/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
-              <AddScreen/>
-              <Edit/>
-              <Delete/>
+              </Link>
+              <AddScreen />
+              <Edit />
+              <Delete />
             </td>
           </tr>
         </tbody>

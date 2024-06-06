@@ -123,7 +123,7 @@ export default function Add() {
                     >
                       Company Logo
                     </label>
-                    <div className="px-3 py-3 border-dashed rounded border border-2 border-purple-300 bg-transparent flex justify-center align-center">
+                    <div className="px-3 py-3 border-dashed rounded  border-2 border-purple-300 bg-transparent flex justify-center align-center">
                       <button>
                         <Svg src="upload" w={20} h={20} />
                       </button>

@@ -25,19 +25,19 @@ function webPage({
           <li>
             <div className="flex items-center">
               <Svg src="pointer-right" w={4} h={8} />
-              <a
-                href="#"
+              <Link
+                href="/dashboard/inspirations/resources"
                 className="ms-1 text-xs font-medium text-gray-700 hover:text-purple-600 md:ms-2"
               >
                 Inspirations
-              </a>
+              </Link>
             </div>
           </li>
           <li>
             <div className="flex items-center">
               <Svg src="pointer-right" w={4} h={8} />
               <Link
-                href="/dashboard"
+                href="/dashboard/inspirations/resources#web"
                 className="ms-1 text-xs font-medium text-gray-700 hover:text-purple-600 md:ms-2"
               >
                 Web
@@ -92,70 +92,117 @@ function webPage({
         </span>
         <span className="text-xs font-light">Showing 50 screens</span>
       </div>
-      <div className="grid grid-cols-3 gap-3 mt-3 mb-8">
-        <Image
-          src="/images/screen-2.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-3.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-4.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-5.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-6.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-7.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-8.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-9.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
-        <Image
-          src="/images/screen-2.png"
-          width={300}
-          height={200}
-          className="me-1"
-          alt="image"
-        />
+      <div className="grid grid-cols-3 gap-3 mt-3 mb-8 ">
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-2.png"
+            width={300}
+            height={200}
+            className="me-1 "
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-3.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-4.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-5.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-6.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-7.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-8.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-9.png"
+            width={300}
+            height={200}
+            className="me-1"
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+        <div className="relative group hover:scale-110 transition ease-out duration-500 items-center content-center">
+          <Image
+            src="/images/screen-2.png"
+            width={300}
+            height={200}
+            className="me-1 "
+            alt="image"
+          />
+          <button className="absolute inset-x-20 bottom-10 items-center ml-0  text-xs flex gap-2 justify-center bg-white rounded-lg z-50 px-1 py-2 text-red-700 hover:scale-110 hover:bg-red-200 transition ease-in-out duration-300">
+            Delete Screen <Svg src="del" w={12} h={12} />
+          </button>
+        </div>
+
+       
       </div>
       <div className="w-full flex lg:mb-24 justify-end gap-4 items-center ">
         <button className="flex justify-self-end bg-purple-700 py-2 px-4 text-white text-xs rounded-full items-center gap-1">
@@ -163,9 +210,7 @@ function webPage({
         </button>
         <div className="gap-3">
           <span className="text-xs hover:text-purple-700 mr-2">Page</span>
-          <span className="text-xs bg-gray-200 px-3 py-1 rounded mr-2">
-            1
-          </span>
+          <span className="text-xs bg-gray-200 px-3 py-1 rounded mr-2">1</span>
           <span className="text-xs hover:text-purple-700 mr-2">of 50</span>
         </div>
       </div>

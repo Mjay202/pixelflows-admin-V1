@@ -1,5 +1,6 @@
 import Svg from "@/app/components/svg";
 import Delete from "./delete-jobs";
+import Link from "next/link";
 
 
 export default function JobTable({ query }: { query?: string }) {
@@ -93,9 +94,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -154,9 +155,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -215,9 +216,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -276,9 +277,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -337,9 +338,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -398,9 +399,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -459,9 +460,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -520,9 +521,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>
@@ -581,9 +582,9 @@ export default function JobTable({ query }: { query?: string }) {
               scope="row"
               className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
             >
-              <button>
+              <Link href="/dashboard/job-boards/new">
                 <Svg src="view" w={16} h={11} />
-              </button>
+              </Link>
               <button>
                 <Svg src="edit" w={12} h={12} />
               </button>

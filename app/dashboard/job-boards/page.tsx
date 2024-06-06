@@ -1,16 +1,26 @@
-'use client'
+
 import ButtonWithIcon from "@/app/components/button-with-icon";
 import Search from "@/app/components/search";
 import JobTable from "./job-table";
 import Add from "./add-job";
-import Image from "next/image";
-import { toast } from "sonner";
 
-function JobBoardPage() {
+
+type employee = {
+  id: number;
+  employee_name: string;
+  employee_salary: number;
+  employee_age: number;
+  profile_image: string;
+};
+async function JobBoardPage() {
+  const response = await fetch(
+    "https://dummy.restapiexample.com/api/v1/employees"
+  );
+
+  const employees = await response.json();
+  console.log(employees);
+
   
-  const addPost = () => {
-    toast.success('Post added successfully');
-  }
   return (
     <div>
       <h1 className="text-lg font-semibold">Job Boards</h1>
@@ -33,24 +43,21 @@ function JobBoardPage() {
             svg="/svg/sort.svg"
             text="Sort"
           />
-          <button
-            id="#add1"
-            onMouseDown={addPost}
-            className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
-            type="button"
-          >
-            <Image
-              src="/svg/plus.svg"
-              alt="Icon"
-              width={11}
-              height={11}
-              className="inline-flex mr-2"
-            />
-            Post a job
-          </button>
+          <Add/>
         </div>
       </div>
       <JobTable />
+
+      <div className="mt-3 grid grid-cols-2">
+        {employees.data.map((employee: employee) => (
+          <div key={employee.id} className="flex"> 
+            <span>{employee.employee_name}</span>
+            <span>{employee.employee_salary}</span>
+            <span>{employee.employee_age}</span>
+            <span>{employee.employee_name}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
