@@ -1,4 +1,5 @@
-// context/AuthContext.tsx
+"use client"
+
 import {
   createContext,
   useContext,
@@ -7,8 +8,9 @@ import {
   useEffect,
 } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
-interface AdminDetails {
+interface admin {
   _id: number;
   email: string;
   first_name: string;
@@ -19,8 +21,8 @@ interface AdminDetails {
 }
 
 interface AuthContextType {
-  token: string | null;
-  adminDetails: AdminDetails | null;
+  accessToken: string | null;
+  admin: admin | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -28,30 +30,38 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [adminDetails, setAdminDetails] = useState<AdminDetails | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [admin, setAdmin] = useState<admin | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const savedToken = localStorage.getItem("token");
-    const savedAdminDetails = localStorage.getItem("adminDetails");
-    if (savedToken) setToken(savedToken);
-    if (savedAdminDetails) setAdminDetails(JSON.parse(savedAdminDetails));
+    const savedaccessToken = localStorage.getItem("accessToken");
+    const savedadmin = localStorage.getItem("admin");
+    if (savedaccessToken) setAccessToken(savedaccessToken);
+    if (savedadmin) setAdmin(JSON.parse(savedadmin));
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post("https://api.example.com/login", {
-        email,
-        password,
-      });
-      const { token } = response.data.accessToken;
-      const { adminDetails } = response.data.admin;
+      const response = await axios.post(
+        process.env.NEXT_PUBLIC_BASE_URL+"/auth/admin-login",
+        {
+          email,
+          password,
+        }
+      );
 
-      setToken(token);
-      setAdminDetails(adminDetails);
+      if (response.status === 201 && response.data.status) {
+         const { accessToken, admin } = response.data.data;
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("adminDetails", JSON.stringify(adminDetails));
+         setAccessToken(accessToken);
+         setAdmin(admin);
+
+         localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("admin", JSON.stringify(admin));
+        router.push("/dashboard");
+      }
+     
     } catch (error) {
       console.error("Login error", error);
       throw new Error("Failed to login");
@@ -59,14 +69,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    setToken(null);
-    setAdminDetails(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("adminDetails");
+    setAccessToken(null);
+    setAdmin(null);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("admin");
   };
 
   return (
-    <AuthContext.Provider value={{ token, adminDetails, login, logout }}>
+    <AuthContext.Provider value={{ accessToken, admin, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

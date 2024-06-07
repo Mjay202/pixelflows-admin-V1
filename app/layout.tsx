@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import 'flowbite';
 import { Toaster, toast } from "sonner";
+import { AuthProvider } from "@/context/AuthContext";
 
 
 
@@ -36,8 +37,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} font-inter`}>
-        <Toaster position="top-right" richColors/>
-        {children}
+        <AuthProvider>
+          <Toaster position="top-right" richColors />
+          {children}
+        </AuthProvider>
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"
           async
