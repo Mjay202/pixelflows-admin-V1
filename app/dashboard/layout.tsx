@@ -2,7 +2,6 @@
 import type { ReactNode } from "react";
 import SideBar from "./side-bar";
 import NavbarButton from "./navbar-button";
-import { useAuth } from "@/context/AuthContext";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
@@ -14,13 +13,14 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
 
-  const { admin, accessToken } = useAuth();
+  
 
   useEffect(() => {
-    if (!accessToken) {
-      redirect("/login");
-    }
-  }, [accessToken]);
+   const token = localStorage.getItem("accessToken");
+   if (!token) {
+    redirect('/login')
+   }
+  }, []);
   
   return (
     <section className="bg-white text-sm">

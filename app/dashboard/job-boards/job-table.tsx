@@ -1,9 +1,20 @@
+'use client'
 import Svg from "@/app/components/svg";
 import Delete from "./delete-jobs";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
+interface Job {
+  _id: number;
+  [propsName:string] : any;
+}
 
-export default function JobTable({ query }: { query?: string }) {
+interface JobTableProps {
+  jobs?: Job[] | null;
+}
+const JobTable = ({ jobs }: { jobs: [] }) => {
+  const [list, setList] = useState<[]>(jobs);
+  console.log(jobs)
   return (
     <div className="relative mt-2 lg:mt-3  sm:rounded-lg mb-32">
       <table className="w-full relative border-x md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500 ">
@@ -44,555 +55,69 @@ export default function JobTable({ query }: { query?: string }) {
           </tr>
         </thead>
         <tbody className="text-xs">
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
+          {jobs.map((job: any) => (
+            <tr className="bg-white border-b hover:bg-gray-50" key={job._id}>
+              <td className="w-4 p-4">
+                <div className="flex items-center">
+                  <input
+                    id="checkbox-table-search-1"
+                    type="checkbox"
+                    className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
+                    required
+                  />
+                  <label htmlFor="checkbox-table-search-1" className="sr-only">
+                    checkbox
+                  </label>
+                </div>
+              </td>
 
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Lagos, Nigeria
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Internship
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Expert
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Design Pros
-            </td>
+              <td
+                scope="row"
+                className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
+              >
+                {job.title}
+              </td>
+              <td
+                scope="row"
+                className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
+              >
+                {job.location}
+              </td>
+              <td
+                scope="row"
+                className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
+              >
+                {job.job_type}
+              </td>
+              <td
+                scope="row"
+                className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
+              >
+                {job.seniority_level}
+              </td>
+              <td
+                scope="row"
+                className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
+              >
+                {job.company}
+              </td>
 
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
+              <td
+                scope="row"
+                className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
+              >
+                <Link href="/dashboard/job-boards/new">
+                  <Svg src="view" w={16} h={11} />
+                </Link>
+                <button>
+                  <Svg src="edit" w={12} h={12} />
+                </button>
+                <Delete />
+                {/* <Edit />
               <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Senior UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Manchester, United Kingdom
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Contract
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Senior
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Creative minds
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Lagos, Nigeria
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Internship
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Expert
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Design Pros
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Senior UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Manchester, United Kingdom
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Contract
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Senior
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Creative minds
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Lagos, Nigeria
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Internship
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Expert
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Design Pros
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Senior UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Manchester, United Kingdom
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Contract
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Senior
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Creative minds
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Lagos, Nigeria
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Internship
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Expert
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Design Pros
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Senior UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Manchester, United Kingdom
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Contract
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Senior
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Creative minds
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              UI/UX Designer
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Lagos, Nigeria
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Internship
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Expert
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Design Pros
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/job-boards/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <button>
-                <Svg src="edit" w={12} h={12} />
-              </button>
-             <Delete/>
-              {/* <Edit />
-              <Delete /> */}
-            </td>
-          </tr>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
@@ -666,4 +191,5 @@ export default function JobTable({ query }: { query?: string }) {
       </div>
     </div>
   );
-}
+};
+export default JobTable;
