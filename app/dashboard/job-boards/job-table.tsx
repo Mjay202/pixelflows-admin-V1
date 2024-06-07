@@ -1,24 +1,15 @@
-'use client'
+
 import Svg from "@/app/components/svg";
 import Delete from "./delete-jobs";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-interface Job {
-  _id: number;
-  [propsName:string] : any;
-}
-
-interface JobTableProps {
-  jobs?: Job[] | null;
-}
 const JobTable = ({ jobs }: { jobs: [] }) => {
-  const [list, setList] = useState<[]>(jobs);
-  console.log(jobs)
+ 
+
   return (
-    <div className="relative mt-2 lg:mt-3  sm:rounded-lg mb-32">
+    <div className="relative mt-8 lg:mt-3  sm:rounded-lg mb-32">
       <table className="w-full relative border-x md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500 ">
-        <thead className="text-sm border-b text-gray-900 border-t bg-white  hover:bg-gray-50 items-center">
+        <thead className="text-xs border-b text-gray-900 border-t bg-white  hover:bg-gray-50 items-center">
           <tr className="">
             <th scope="col" className="p-3">
               <div className="flex items-center">
@@ -33,23 +24,23 @@ const JobTable = ({ jobs }: { jobs: [] }) => {
                 </label>
               </div>
             </th>
-            <th scope="col" className="px-1 py-3 font-medium">
+            <th scope="col" className="px-1 py-3 font-semibold">
               Job Title
             </th>
 
-            <th scope="col" className="py-3 font-medium">
+            <th scope="col" className="py-3 font-semibold">
               Location
             </th>
-            <th scope="col" className="py-3 mx-0 font-medium">
+            <th scope="col" className="py-3 mx-0 font-semibold">
               Job Type
             </th>
-            <th scope="col" className="py-3 mx-0 font-medium">
+            <th scope="col" className="py-3 mx-0 font-semibold">
               Seniority Level
             </th>
-            <th scope="col" className="py-3 mx-0 font-medium">
+            <th scope="col" className="py-3 mx-0 font-semibold">
               Company name
             </th>
-            <th scope="col" className="py-3 font-medium">
+            <th scope="col" className="py-3 font-semibold">
               Actions
             </th>
           </tr>

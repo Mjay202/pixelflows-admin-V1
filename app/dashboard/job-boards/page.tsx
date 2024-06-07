@@ -24,13 +24,13 @@ const getAllJobs = async () => {
       },
     })
       .then((response) => response.json());
-      // .then((json) => setJobs(JSON.stringify(json.data)));
-    setJobs(response.data);
-    // if(response) {
-    //  console.log(response);
-    // }
+ 
+ 
+    if(response) {
+       setJobs(response.data);
+    }
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
@@ -39,10 +39,6 @@ const getAllJobs = async () => {
     getAllJobs();
   }, []);
 
-
-  const data = getAllJobs();
-  // setJobs(data)
-  // console.log(jobs);
   return (
     <div>
       <h1 className="text-lg font-semibold">Job Boards</h1>

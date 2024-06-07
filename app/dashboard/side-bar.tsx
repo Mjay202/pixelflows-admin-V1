@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { initFlowbite } from "flowbite";
+import Svg from "../components/svg";
 
 export default function SideBar() {
     const pathname = usePathname();
@@ -15,13 +16,7 @@ export default function SideBar() {
       >
         <div className="h-full px-3 py-6 overflow-y-auto bg-gray-800">
           <Link href="/dashboard" className="flex items-center ps-2.5 mb-5">
-            <Image
-              src="/svg/logo.svg"
-              width={24}
-              height={24}
-              className="me-1"
-              alt="logo"
-            />
+            <Svg src="logo" w={24} h={24} />
             <span className="self-center text-xl font-normal whitespace-nowrap text-white">
               Pixelflow
             </span>
@@ -35,12 +30,7 @@ export default function SideBar() {
                   pathname === "/dashboard" ? "text-purple-300" : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/home.svg"
-                  alt="Home Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="home" w={16} h={17} />
                 <span className="ms-4 font-light text-sm">Home</span>
               </Link>
             </li>
@@ -53,12 +43,7 @@ export default function SideBar() {
                     : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/users.svg"
-                  alt="Users Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="users" w={16} h={17} />
                 <span className="ms-4 font-light text-sm ">Users</span>
               </Link>
             </li>
@@ -71,12 +56,7 @@ export default function SideBar() {
                     : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/team.svg"
-                  alt="Team Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="team" w={16} h={17} />
                 <span className="ms-4 font-light text-sm">Team mates</span>
               </Link>
             </li>
@@ -89,12 +69,7 @@ export default function SideBar() {
                 aria-controls="inspirations"
                 data-collapse-toggle="inspirations"
               >
-                <Image
-                  src="/svg/bulb.svg"
-                  alt="Bulb Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="bulb" w={16} h={17} />
                 <span className="ms-4 font-light text-sm flex-1 text-left rtl:text-right whitespace-nowrap">
                   Inspirations
                 </span>
@@ -142,12 +117,7 @@ export default function SideBar() {
                     : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/figma.svg"
-                  alt="UI Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="figma" w={16} h={17} />
                 <span className="ms-4 font-light text-sm">UI Assets</span>
               </Link>
             </li>
@@ -160,12 +130,7 @@ export default function SideBar() {
                     : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/job.svg"
-                  alt="Job Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="job" w={16} h={17} />
                 <span className="ms-4 font-light text-sm">Job Boards</span>
               </Link>
             </li>
@@ -178,12 +143,7 @@ export default function SideBar() {
                     : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/book.svg"
-                  alt="Book Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="book" w={16} h={17} />
                 <span className="ms-4 font-light text-sm">Knowledge</span>
               </Link>
             </li>
@@ -196,12 +156,7 @@ export default function SideBar() {
                     : "text-white "
                 } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
               >
-                <Image
-                  src="/svg/settings.svg"
-                  alt="Settings Icon"
-                  width={16}
-                  height={17}
-                />
+                <Svg src="settings" w={16} h={17} />
                 <span className="ms-4 font-light text-sm">Settings</span>
               </Link>
             </li>
