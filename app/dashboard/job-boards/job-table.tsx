@@ -3,8 +3,12 @@ import Svg from "@/app/components/svg";
 import Delete from "./delete-jobs";
 import Link from "next/link";
 import { initModals } from "flowbite";
-import Edit from "./edit-job";
+import dynamic from "next/dynamic";
 
+
+ const EditJob = dynamic(() => import("./edit-job"), {
+   ssr: false,
+ });
 const JobTable = ({ jobs }: { jobs: [] }) => {
  
   return (
@@ -115,7 +119,8 @@ const JobTable = ({ jobs }: { jobs: [] }) => {
                     >
                       <Svg src="edit" w={12} h={12} />
                     </button>
-                    <Edit id={job._id} />
+                  
+                    <EditJob id={job._id}/>
                   </div>
 
                   <div>
