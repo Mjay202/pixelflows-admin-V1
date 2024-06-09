@@ -3,6 +3,7 @@ import Svg from "@/app/components/svg";
 import Delete from "./delete-jobs";
 import Link from "next/link";
 import { initModals } from "flowbite";
+import Edit from "./edit-job";
 
 const JobTable = ({ jobs }: { jobs: [] }) => {
  
@@ -104,9 +105,19 @@ const JobTable = ({ jobs }: { jobs: [] }) => {
                   <Link href={`/dashboard/job-boards/${job._id}`}>
                     <Svg src="view" w={16} h={11} />
                   </Link>
-                  <button>
-                    <Svg src="edit" w={12} h={12} />
-                  </button>
+                  <div>
+                    <button
+                      id="#edit1"
+                      onMouseDown={initModals}
+                      data-modal-target={`${job._id}-1`}
+                      data-modal-toggle={`${job._id}-1`}
+                      type="button"
+                    >
+                      <Svg src="edit" w={12} h={12} />
+                    </button>
+                    <Edit id={job._id} />
+                  </div>
+
                   <div>
                     <button
                       onMouseOver={initModals}
@@ -114,11 +125,10 @@ const JobTable = ({ jobs }: { jobs: [] }) => {
                       data-modal-toggle={job._id}
                       className="block text-white"
                       type="button"
-                     
                     >
                       <Svg src="delete" w={15} h={16} />
                     </button>
-                  <Delete id={job._id} />
+                    <Delete id={job._id} />
                   </div>
                 </td>
               </tr>
