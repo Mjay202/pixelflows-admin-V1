@@ -7,10 +7,11 @@ import Image from "next/image";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { CldUploadWidget, CloudinaryUploadWidgetInfo, CloudinaryUploadWidgetResults } from "next-cloudinary";
+import { useRouter } from "next/navigation";
 
 
 export default function Add() {
-
+  const router = useRouter();
  const [value, setValue] = useState(
    "Lorem ipsum dolor sit amet....."
  );
@@ -34,7 +35,9 @@ export default function Add() {
   const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
     setTagInput(event.target.value);
   };
-
+//  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+//    setSelectedOption(event.target.value);
+//  };
   const handleTagKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && tagInput.trim() !== "") {
       event.preventDefault();
@@ -69,35 +72,40 @@ export default function Add() {
     };
 
     const token = localStorage.getItem("accessToken");
-    // try {
-    //   const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify(data)
-    //   }).then((response) => response.json());
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data)
+      }).then((response) => response.json());
 
-    //   if (response) {
-    //     console.log(response.data);
-    //     const promise = () =>
-    //       new Promise((resolve) =>
-    //         setTimeout(() => resolve({ name: "Job" }), 2000)
-    //       );
+      if (response.data) {
+        console.log(response);
+        const promise = () =>
+          new Promise((resolve) =>
+            setTimeout(() => resolve({ name: "Job" }), 2000)
+          );
 
-    //     toast.promise(promise, {
-    //       loading: "Loading...",
-    //       success: (data: any) => {
-    //         return `${data.name} has been successfully added`;
-    //       },
-    //       error: "Error",
-    //     });
-    //   }
-    // } catch (error) {
-    //   return error;
-    // }
-    console.log(JSON.stringify(data), token);
+        toast.promise(promise, {
+          loading: "Loading...",
+          success: (data: any) => {
+            return `${data.name} has been successfully added`;
+          },
+          error: "Error",
+        });
+        router.refresh();
+      }
+      if (response.error) {
+        const errorMsg = response.error.message[0];
+        toast.error(errorMsg);
+      }
+    } catch (error) {
+      return error;
+    }
+   
     
   };
   return (
@@ -297,7 +305,9 @@ export default function Add() {
                 />
                 <span className="inline-flex gap-x-2 italics mt-2">
                   {tags?.map((tag, index) => (
-                    <span key={index} className="bg-purple-100 rounded-lg p-2">{tag}</span>
+                    <span key={index} className="bg-purple-100 rounded-lg p-2">
+                      {tag}
+                    </span>
                   ))}
                 </span>
               </div>
@@ -326,16 +336,18 @@ export default function Add() {
                 >
                   Job Type<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
+                <select
+                  id="job_type"
                   value={job_type}
                   onChange={(e) => setJob_type(e.target.value)}
-                  name="job_type"
-                  id="job_type"
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Select type"
-                  required
-                />
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                >
+                  <option selected>Choose a job_type</option>
+                  <option value="full-time">Full time</option>
+                  <option value="part-time">Part time</option>
+                  <option value="contract">Contract</option>
+                  <option value="internship">Internship</option>
+                </select>
               </div>
               <div className="col-span-2">
                 <label
@@ -530,16 +542,17 @@ export default function Add() {
                 >
                   Open/Closed<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
+                <select
                   name="status"
                   id="status"
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Select option"
-                  required
-                />
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                >
+                  <option selected>Select status</option>
+                  <option value="open">Open</option>
+                  <option value="closed">Closed</option>
+                </select>
               </div>
               <div className="col-span-2">
                 <label
@@ -548,16 +561,19 @@ export default function Add() {
                 >
                   Seniority level<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
+                <select
                   name="seniority_level"
                   id="seniority_level"
                   value={seniority_level}
                   onChange={(e) => setSeniority_level(e.target.value)}
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Select option"
-                  required
-                />
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                >
+                  <option selected>Select level</option>
+                  <option value="junior">Junior</option>
+                  <option value="mid">Mid</option>
+                  <option value="senior">Senior</option>
+                  <option value="expert">Expert</option>
+                </select>
               </div>
               <div className="col-span-2">
                 <label
@@ -566,16 +582,39 @@ export default function Add() {
                 >
                   Work mode<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
+                <select
                   name="work_arrangement"
                   id="work_arrangement"
                   value={work_arrangement}
                   onChange={(e) => setWork_arrangement(e.target.value)}
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Select option"
-                  required
-                />
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                >
+                  <option selected>Select arrangement</option>
+                  <option value="remote">Remote</option>
+                  <option value="onsite">Onsite</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+              <div className="col-span-2">
+                <label
+                  htmlFor="website"
+                  className="block mb-2 text-sm font-semibold text-gray-900"
+                >
+                  Location flexibility<span className="text-red-700">*</span>
+                </label>
+                <select
+                  name="location_flexibility"
+                  id="location_flexibility"
+                  value={location_flexibility}
+                  onChange={(e) => setLocation_flexibility(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                >
+                  <option selected>Flexible?</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                 
+                </select>
+             
               </div>
             </div>
 

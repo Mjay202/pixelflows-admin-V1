@@ -13,8 +13,6 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
 
-  
-
   useEffect(() => {
    const token = localStorage.getItem("accessToken");
    if (!token) {
