@@ -1,6 +1,5 @@
 "use client";
 import Svg from "@/app/components/svg";
-import { initModals } from "flowbite";
 import { toast } from "sonner";
 
 export default function Delete({ id }: {id: string} ) {

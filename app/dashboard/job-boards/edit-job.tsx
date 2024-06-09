@@ -4,6 +4,7 @@ import {
   FormEvent,
   KeyboardEvent,
   MouseEvent,
+  useEffect,
   useState,
 } from "react";
 
@@ -18,28 +19,46 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import { useRouter } from "next/navigation";
+import { getJob } from "@/app/services/api";
+
+
 
 export default function Edit({ id }: { id: string }) {
 
+    const router = useRouter();
+    const [value, setValue] = useState("Lorem ipsum dolor sit amet.");
 
-  const router = useRouter();
-  const [value, setValue] = useState("Lorem ipsum dolor sit amet.");
+    const [title, setTitle] = useState<string>("");
+    const [summary, setSummary] = useState<string>("");
+    const [location, setLocation] = useState<string>("");
+    const [job_type, setJob_type] = useState<string>("");
+    const [company, setCompany] = useState<string>("");
+    const [company_url, setCompany_url] = useState<string>("");
+    const [company_logo, setCompany_logo] = useState<string>("");
+    const [uploaded, setUploaded] = useState<boolean>(false);
+    const [apply_url, setApply_url] = useState<string>("");
+    const [status, setStatus] = useState<string>("");
+    const [seniority_level, setSeniority_level] = useState<string>("");
+    const [work_arrangement, setWork_arrangement] = useState<string>("");
+    const [location_flexibility, setLocation_flexibility] =
+      useState<string>("");
+    const [tags, setTags] = useState<string[]>([]);
+    const [tagInput, setTagInput] = useState<string>("");
+    
+useEffect(() => {
+    const getEachJob = async () => {
+     const response = await getJob(id);
+        if (response) {
+        
+            setValue(response.description)
+     }
+     
+ }
+    getEachJob();
+}, [])
 
-  const [title, setTitle] = useState<string>("");
-  const [summary, setSummary] = useState<string>("");
-  const [location, setLocation] = useState<string>("");
-  const [job_type, setJob_type] = useState<string>("");
-  const [company, setCompany] = useState<string>("");
-  const [company_url, setCompany_url] = useState<string>("");
-  const [company_logo, setCompany_logo] = useState<string>("");
-  const [uploaded, setUploaded] = useState<boolean>(false);
-  const [apply_url, setApply_url] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
-  const [seniority_level, setSeniority_level] = useState<string>("");
-  const [work_arrangement, setWork_arrangement] = useState<string>("");
-  const [location_flexibility, setLocation_flexibility] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [tagInput, setTagInput] = useState<string>("");
+
+  
 
   const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
     setTagInput(event.target.value);

@@ -43,6 +43,28 @@ export const getAllJobs = async () => {
   }
 };
 
+export const getJob = async (id: string) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then((response) => response.json());
+
+    if (response) {
+     return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
 
 export const login = async (credentials: {
   email: string;

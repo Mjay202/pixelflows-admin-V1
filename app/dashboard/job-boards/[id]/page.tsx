@@ -1,58 +1,28 @@
 'use client'
 import Svg from "@/app/components/svg";
-import { CldImage } from "next-cloudinary";
-import Image from "next/image";
+import { getJob } from "@/app/services/api";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-interface Job {
-  _id: string;
-  title: string;
-  summary: string;
-  description: TrustedHTML;
-  location: string;
-  job_type: string;
-  salary: number[];
-  company: string;
-  company_url: string;
-  company_logo: string;
-  apply_url: string;
-  tags: string[];
-  status: string;
-  seniority_level: string;
-  work_arrangement: string;
-  location_flexibility: string;
-}
+
 function JobPage(this: any, { params }: {params: {id: string}}) {
   
   const [job, setJob] = useState<Job | null>(null);
   
-  const getJob = async () => {
-    const token = localStorage.getItem("accessToken");
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + params.id, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((response) => response.json());
-
-      if (response) {
-        setJob(response.data);
-       
-      }
-    } catch (error) {
-      return error;
-    }    
-  };
-
   
-    useEffect(() => {
-      getJob();
-     
-    }, []);
-  console.log(job);
+  
+   useEffect(() => {
+     const getEachJob = async () => {
+       const response = await getJob(params.id);
+       if (response) {
+         console.log(response);
+         setJob(response);
+       }
+     };
+     getEachJob();
+   }, []);
+
+
   return (
     <div>
       <nav className="flex" aria-label="Breadcrumb">
