@@ -44,30 +44,30 @@ export default function Edit({ id }: { id: string }) {
     const [tags, setTags] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState<string>("");
     
-useEffect(() => {
+  useEffect(() => {
     const getEachJob = async (id: string) => {
-     const response = await getJob(id);
-        if (response) {
+      const response = await getJob(id);
+      if (response) {
         
-          setValue(response.description);
-          setTitle(response.title);
-          setSummary(response.summary);
-          setLocation(response.location);
-          setJob_type(response.job_type);
-          setCompany(response.company);
-          setCompany_url(response.company_url);
-          setCompany_logo(response.company_logo);
-          setApply_url(response.apply_url);
-          setStatus(response.status);
-          // setTags(response.tags);
-          setWork_arrangement(response.seniority_level);
-          setWork_arrangement(response.work_arrangement);
-          setLocation_flexibility(response.location_flexibility);
-     }
+        setValue(response.description);
+        setTitle(response.title);
+        setSummary(response.summary);
+        setLocation(response.location);
+        setJob_type(response.job_type);
+        setCompany(response.company);
+        setCompany_url(response.company_url);
+        setCompany_logo(response.company_logo);
+        setApply_url(response.apply_url);
+        setStatus(response.status);
+        // setTags(response.tags);
+        setWork_arrangement(response.seniority_level);
+        setWork_arrangement(response.work_arrangement);
+        setLocation_flexibility(response.location_flexibility);
+      }
      
- }
+    }
     getEachJob(id);
-}, [])
+  }, [id]);
 
   const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
     setTagInput(event.target.value);

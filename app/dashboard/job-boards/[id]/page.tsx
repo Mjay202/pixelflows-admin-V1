@@ -9,8 +9,6 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
   
   const [job, setJob] = useState<Job | null>(null);
   
-  
-  
    useEffect(() => {
      const getEachJob = async () => {
        const response = await getJob(params.id);
@@ -20,8 +18,7 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
        }
      };
      getEachJob();
-   }, []);
-
+   }, [params.id]);
 
   return (
     <div>
