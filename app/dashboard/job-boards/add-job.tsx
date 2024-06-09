@@ -8,6 +8,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { CldUploadWidget, CloudinaryUploadWidgetInfo, CloudinaryUploadWidgetResults } from "next-cloudinary";
 import { useRouter } from "next/navigation";
+import { createJob } from "@/app/services/api";
 
 
 export default function Add() {
@@ -53,7 +54,7 @@ export default function Add() {
     toast.warning("Job adding process has been cancelled!");
   };
 
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     const data = {
       title,
       summary,
@@ -71,43 +72,29 @@ export default function Add() {
       location_flexibility,
     };
 
-    const token = localStorage.getItem("accessToken");
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+    const response : any = await createJob(data)
+    if (response.data) {
+      const promise = () =>
+        new Promise((resolve) =>
+          setTimeout(() => resolve({ name: "Job" }), 2000)
+        );
+
+      toast.promise(promise, {
+        loading: "Job adding...",
+        success: (data: any) => {
+          return `${data.name} has been successfully added`;
         },
-        body: JSON.stringify(data)
-      }).then((response) => response.json());
-
-      if (response.data) {
-        console.log(response);
-        const promise = () =>
-          new Promise((resolve) =>
-            setTimeout(() => resolve({ name: "Job" }), 2000)
-          );
-
-        toast.promise(promise, {
-          loading: "Loading...",
-          success: (data: any) => {
-            return `${data.name} has been successfully added`;
-          },
-          error: "Error",
-        });
-        router.refresh();
-      }
-      if (response.error) {
-        const errorMsg = response.error.message[0];
-        toast.error(errorMsg);
-      }
-    } catch (error) {
-      return error;
+        error: "Error",
+      });
+      router.refresh();
     }
-   
+    if (response.error) {
+      const errorMsg = response.error.message[0];
+      toast.error(errorMsg);
+    }
     
   };
+     
   return (
     <div>
       <button
@@ -624,7 +611,7 @@ export default function Add() {
                 data-modal-toggle="add-modal-4"
                 data-modal-target="add-modal-4"
                 data-modal-hide="add-modal-5"
-                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
+                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-20 py-2.5 text-center"
               >
                 <span className="sr-only">Close modal</span>
                 Go back
