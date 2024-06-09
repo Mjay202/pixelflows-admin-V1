@@ -2,41 +2,26 @@
 import ButtonWithIcon from "@/app/components/button-with-icon";
 import Search from "@/app/components/search";
 import JobTable from "./job-table";
-import Add from "./add-job";
 import { useEffect, useState } from "react";
-
-
-
-
- 
+import { getAllJobs } from "@/app/services/api";
+import dynamic from "next/dynamic";
 
 export default function JobBoardPage() {
   const [jobs, setJobs] = useState<any | null>(null);
+  const AddJob = dynamic(() => import("./add-job"), {
+    ssr:false
+  });
 
-const getAllJobs = async () => {
-  const token = localStorage.getItem("accessToken");
-  try {
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json());
- 
- 
-    if(response) {
-       setJobs(response.data);
-    }
-  } catch (error) {
-    return error;
-  }
-};
-
-  
   useEffect(() => {
-    getAllJobs();
+
+    const getJobs = async() => {
+      const response = await getAllJobs();
+      if (response) {
+        setJobs(response);
+      }
+    }
+    getJobs();
+   
   }, []);
 
   return (
@@ -61,7 +46,8 @@ const getAllJobs = async () => {
             svg="/svg/sort.svg"
             text="Sort"
           />
-          <Add />
+          {/* <Add /> */}
+          <AddJob/>
         </div>
       </div>
      
@@ -70,7 +56,7 @@ const getAllJobs = async () => {
             <div role="status">
               <svg
                 aria-hidden="true"
-                className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

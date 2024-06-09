@@ -25,7 +25,6 @@ api.interceptors.request.use(
 
 export const getAllJobs = async () => {
   const token = localStorage.getItem("accessToken");
-  const data = []
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs", {
       method: "GET",
@@ -34,12 +33,14 @@ export const getAllJobs = async () => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((response) => response.json())
-      .then((json) => console.log(JSON.stringify(json)));
-
-    return response;
+      .then((response) => response.json());
+ 
+ 
+    if(response) {
+      return (response.data);
+    }
   } catch (error) {
-    return error
+    return error;
   }
 };
 

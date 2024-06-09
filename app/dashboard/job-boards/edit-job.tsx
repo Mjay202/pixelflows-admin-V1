@@ -35,42 +35,50 @@ export default function Edit({ id }: { id: string }) {
     const [company, setCompany] = useState<string>("");
     const [company_url, setCompany_url] = useState<string>("");
     const [company_logo, setCompany_logo] = useState<string>("");
-    const [uploaded, setUploaded] = useState<boolean>(false);
+    const [uploaded, setUploaded] = useState<boolean>(true);
     const [apply_url, setApply_url] = useState<string>("");
     const [status, setStatus] = useState<string>("");
     const [seniority_level, setSeniority_level] = useState<string>("");
     const [work_arrangement, setWork_arrangement] = useState<string>("");
-    const [location_flexibility, setLocation_flexibility] =
-      useState<string>("");
+    const [location_flexibility, setLocation_flexibility] = useState<string>("");
     const [tags, setTags] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState<string>("");
     
 useEffect(() => {
-    const getEachJob = async () => {
+    const getEachJob = async (id: string) => {
      const response = await getJob(id);
         if (response) {
         
-            setValue(response.description)
+          setValue(response.description);
+          setTitle(response.title);
+          setSummary(response.summary);
+          setLocation(response.location);
+          setJob_type(response.job_type);
+          setCompany(response.company);
+          setCompany_url(response.company_url);
+          setCompany_logo(response.company_logo);
+          setApply_url(response.apply_url);
+          setStatus(response.status);
+          // setTags(response.tags);
+          setWork_arrangement(response.seniority_level);
+          setWork_arrangement(response.work_arrangement);
+          setLocation_flexibility(response.location_flexibility);
      }
      
  }
-    getEachJob();
+    getEachJob(id);
 }, [])
-
-
-  
 
   const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
     setTagInput(event.target.value);
   };
-  //  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  //    setSelectedOption(event.target.value);
-  //  };
+
   const handleTagKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && tagInput.trim() !== "") {
       event.preventDefault();
       setTags([...tags, tagInput.trim()]);
       setTagInput("");
+      
     }
   };
 
@@ -78,10 +86,10 @@ useEffect(() => {
     toast.warning("Job editing process has been cancelled!");
   };
 
-  const handleSubmit = async () => {
+  const handleUpdate = async () => {
     const data = {
       title,
-      summary,
+      // summary,
       description: value,
       location,
       job_type,
@@ -98,8 +106,8 @@ useEffect(() => {
 
     const token = localStorage.getItem("accessToken");
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs", {
-        method: "POST",
+      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -308,7 +316,7 @@ useEffect(() => {
                   placeholder="Enter tag name and press enter to save"
                   required
                 />
-                <span className="inline-flex gap-x-2 italics mt-2">
+                <span className={`gap-x-2 italics mt-2 ${tags?  'inline-flex' : 'hidden'}`}>
                   {tags?.map((tag, index) => (
                     <span key={index} className="bg-purple-100 rounded-lg p-2">
                       {tag}
@@ -634,7 +642,7 @@ useEffect(() => {
               </button>
               <button
                 type="button"
-                onMouseDown={handleSubmit}
+                onMouseDown={handleUpdate}
                 data-modal-hide={`${id}-3`}
                 data-modal-toggle={`${id}-3`}
                 data-modal-target={`${id}-3`}

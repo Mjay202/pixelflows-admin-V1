@@ -69,12 +69,13 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
       </div>
 
       <div className="grid grid-cols-3 gap-x-4 mt-6 mb-16 max-h-fit ">
-        <div
-          className="border-2 rounded-md p-4 col-span-2 object-contain"
-          dangerouslySetInnerHTML={{ __html: `${job && job.description}` }}
-        >
-          {/* <span className="text-lg font-bold">Senior UX Designer</span> */}
-          {/* <p className="text-sm mt-2">
+        {job && (
+          <div
+            className="border-2 rounded-md p-4 col-span-2 object-contain"
+            dangerouslySetInnerHTML={{ __html: `${job && job.description}` }}
+          >
+            {/* <span className="text-lg font-bold">Senior UX Designer</span> */}
+            {/* <p className="text-sm mt-2">
             We're looking for a talented and passionate Mobile Designer to join
             our team and help create a mobile app that will redefine the online
             shopping experience. As a key member of our design team, you will
@@ -82,8 +83,8 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
             engaging, and visually stunning user interfaces that delight our
             customers.
           </p> */}
-          {/* {`${job && job.description}`} */}
-          {/* <div className="text-sm mt-4">
+            {/* {`${job && job.description}`} */}
+            {/* <div className="text-sm mt-4">
             <span>Responsibilities</span>
             <ul className="list-disc pl-4">
               <li>
@@ -141,7 +142,8 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
               </li>
             </ul>
           </div> */}
-        </div>
+          </div>
+        )}
         <div className="border-1 rounded-md p-4 flex-col max-h-fit h-full">
           <div className="flex flex-col justify-center items-center">
             <img
@@ -161,7 +163,7 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
             </Link>
 
             <Link
-              href={`${job && job.apply_url}`}
+              href={`${job && "https://" + job.apply_url}`}
               className="bg-purple-700 text-white px-12 py-2 mt-6 rounded-full"
             >
               Apply now
