@@ -89,11 +89,10 @@ export const createPlatform = async (data: any) => {
       },
       body: JSON.stringify(data),
     }).then((response) => response.json());
-    if (response.statusCode == 201) {
-    
+    if (response) {
        return response;
     }
-    console.log("error" + response);
+  
   } catch (error) {
     return error;
   }

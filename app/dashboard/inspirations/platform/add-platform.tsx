@@ -30,7 +30,6 @@ export default function Add() {
       setCategories([...categories, newCategory]);
       setName("");
     }
-    console.log(categories);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +38,7 @@ export default function Add() {
 
   const deleteCat = (e: MouseEvent<HTMLButtonElement>, id: number) => {
     e.preventDefault();
-    console.log("Delete button clicked", id);
+
     setCategories(categories.filter((cat) => cat.id !== id));
   };
 
@@ -51,28 +50,34 @@ export default function Add() {
     tags: categories,
   }
     const response = await createPlatform(newData);
-    if (response) {
-      // const promise = () =>
-      //   new Promise((resolve) =>
-      //     setTimeout(() => resolve({ name: "Platform" }), 2000)
-      //   );
+    if (response.statusCode === 201) {
+      const promise = () =>
+        new Promise((resolve) =>
+          setTimeout(() => resolve({ name: "Platform" }), 2000)
+        );
 
-      // toast.promise(promise, {
-      //   loading: "Job adding...",
-      //   success: (data: any) => {
-      //     return `${data.name} has been successfully added`;
-      //   },
-      //   error: "Error",
-      // }
-      // );
-      // router.refresh();
-      console.log(response);
+      toast.promise(promise, {
+        loading: "Job adding...",
+        success: (data: any) => {
+          return `${data.name} has been successfully added`;
+        },
+        error: "Error",
+      }
+      );
+      router.refresh();
+    
     }
-    // if (response) {
-    //   // const errorMsg = response.error.message[0];
-    //   toast.error('There is an error while adding');
-    // }
+    if (response.statusCode === 409) {
+     
+      toast.error(response.error.error + '. ' + response.error.message[0] );
+    }
+    if (response.statusCode === 400) {
+   ;
+      toast.error(response.error.error + ', ' + response.error.message[0] );
+    }
+    
   };
+
   return (
     <div>
       <button
