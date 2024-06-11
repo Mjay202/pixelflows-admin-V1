@@ -18,11 +18,13 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+  
     try {
       await login(email, password) 
     
     } catch (error) {
       setError("Failed to login");
+      console.log(error)
     }
   };
 

@@ -51,7 +51,7 @@ export default function LandingPageTable({
             </tr>
           </thead>
           <tbody className="text-xs">
-            {resources.map((resource: any) => (
+            {resources && resources.map((resource: any) => (
               <tr
                 className="bg-white border-b hover:bg-gray-50"
                 key={resource._id}

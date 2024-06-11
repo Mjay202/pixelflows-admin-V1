@@ -142,7 +142,7 @@ export default function Edit({ id }: { id: string }) {
           <div className="relative bg-white rounded-lg pb-3 shadow ">
             <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
               <h3 className="text-base font-bold text-gray-900 pl-2">
-                              Edit a Job {id} post <span className="text-purple-700">(1)</span>
+                              Edit a Job post <span className="text-purple-700">(1)</span>
               </h3>
               <button
                 type="button"

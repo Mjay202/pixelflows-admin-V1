@@ -1,11 +1,15 @@
 'use client'
 import Svg from "@/app/components/svg";
 import { getJob } from "@/app/services/api";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Edit from "../edit-job";
+import { initModals } from "flowbite";
+import Delete from "../delete-jobs";
 
 
-function JobPage(this: any, { params }: {params: {id: string}}) {
+function JobPage( { params }: {params: {id: string}}) {
   
   const [job, setJob] = useState<Job | null>(null);
   
@@ -57,15 +61,38 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
       </nav>
 
       <div className="w-2/4 flex gap-3 mt-6">
-        <button className="rounded-full px-5 py-2 text-xs font-normal items-center inline-flex border gap-x-2 hover:bg-gray-100 transition ease-out duration-300">
-          Edit <Svg src="edit" w={10} h={10} />
-        </button>
-        <button className="rounded-full px-5 py-2 text-xs text-red-800 font-normal bg-red-50 items-center inline-flex border gap-x-2 hover:bg-red-300 transition ease-out duration-300">
-          Delete <Svg src="del" w={10} h={10} />
-        </button>
+        {job && (
+          <div>
+            <button
+              onMouseDown={initModals}
+              data-modal-target={`${job._id}-1`}
+              data-modal-toggle={`${job._id}-1`}
+              type="button"
+              className="rounded-full px-5 py-2 text-xs font-normal items-center inline-flex border gap-x-2 hover:bg-gray-100 transition ease-out duration-300"
+            >
+              Edit <Svg src="edit" w={10} h={10} />
+            </button>
+            <Edit id={job._id} />{" "}
+          </div>
+        )}
+
+        {job && (
+          <div>
+            <button
+              onMouseOver={initModals}
+              data-modal-target={job._id}
+              data-modal-toggle={job._id}
+              className="rounded-full px-5 py-2 text-xs text-red-800 font-normal bg-red-50 items-center inline-flex border gap-x-2 hover:bg-red-300 transition ease-out duration-300"
+            >
+              Delete <Svg src="del" w={10} h={10} />
+            </button>
+            <Delete id={job._id} back={ true} />
+          </div>
+        )}
       </div>
 
-      <div className="grid grid-cols-3 gap-x-4 mt-6 mb-16 max-h-fit ">
+      {/* <span className="text-lg font-bold mt-10">Job Post</span> */}
+      <div className="grid grid-cols-3 gap-x-4 mt-10 mb-16 max-h-fit ">
         {job && (
           <div
             className="border-2 rounded-md p-4 col-span-2 object-contain"
@@ -143,13 +170,15 @@ function JobPage(this: any, { params }: {params: {id: string}}) {
         )}
         <div className="border-1 rounded-md p-4 flex-col max-h-fit h-full">
           <div className="flex flex-col justify-center items-center">
-            <img
-              src={`${job && job.company_logo}`}
-              width={40}
-              height={70}
-              className="me-1"
-              alt="logo"
-            />
+            {job && (
+              <img
+                src={job.company_logo}
+                width={40}
+                height={70}
+                className="me-1"
+                alt="logo"
+              />
+            )}
 
             <Link
               href={`${job && "https://" + job.company_url}`}

@@ -1,42 +1,31 @@
 "use client";
 import Svg from "@/app/components/svg";
-import { deleteJob } from "@/app/services/api";
-import { redirect, useRouter } from "next/navigation";
+import { deleteScreen } from "@/app/services/api";
 import { toast } from "sonner";
 
-export default function Delete({ id , back}: {id: string, back?: boolean} ) {
-  const router = useRouter();
-  const handleDelete = async(id: string) => {
-
-    const response = await deleteJob(id);
-    
-if (response) {
-  const promise = () =>
-    new Promise((resolve) => setTimeout(() => resolve({ name: "Job" }), 2000));
-
-  toast.success("Deleted successfully");
-  if (back) {
-    router.push("/dashboard/job-boards");
-  }
-  
- setTimeout(() => {
-   window.location.reload();
- }, 2000);
-}
-if (response.error) {
-  const errorMsg = response.error.message[0];
-  toast.error(errorMsg);
-}
+export default function DeleteScreen({ id , res_id}: { id: string , res_id: string}) {
+    const handleDelete = async () => {
+      
+        const response = await deleteScreen(res_id, id);
+    if (response.status == true) {
+      toast.success("Deleted successfully");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+        }
+        if (response.staus == false) {
+            toast.error(response.error.error)
+        }
+        
   };
   const onCancel = () => {
     toast.info("Cancelled!");
-  };
+    };
+
   return (
     <div>
-      
-
       <div
-        id={id}
+        id={`delete-modal-${id}-screen`}
         tab-index="-1"
         className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
       >
@@ -45,7 +34,7 @@ if (response.error) {
             <button
               type="button"
               className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-              data-modal-hide={id}
+              data-modal-hide={`delete-modal-${id}-screen`}
             >
               <svg
                 className="w-3 h-3"
@@ -69,12 +58,12 @@ if (response.error) {
                 <Svg src="bin" w={28} h={31} />
               </div>
 
-              <h3 className="mb-7 text-base md:text-sm font-semi-bold text-gray-500  dark:text-gray-400">
-                Are you sure you want to delete this job?
+              <h3 className="mb-7 text-lg font-semi-bold text-gray-500  dark:text-gray-400">
+                              Are you sure you want to delete this screen?
               </h3>
               <div className="mb-3">
                 <button
-                  data-modal-hide={id}
+                  data-modal-hide={`delete-modal-${id}-screen`}
                   type="button"
                   onMouseDown={onCancel}
                   className="py-2.5 px-10  text-sm font-medium text-gray-900 focus:outline-none transition ease-out duration-300 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-slate-600 focus:z-10 focus:ring-4 focus:ring-gray-100"
@@ -82,9 +71,9 @@ if (response.error) {
                   No, Cancel
                 </button>
                 <button
-                  data-modal-hide={id}
+                  data-modal-hide={`delete-modal-${id}-screen`}
                   type="button"
-                  onMouseDown={(e) => handleDelete(id)}
+                  onMouseDown={handleDelete}
                   className="text-rose-800 ms-6 bg-red-100 hover:bg-red-600 hover:text-white transition ease-out duration-300 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-12 py-2.5 text-center"
                 >
                   Delete

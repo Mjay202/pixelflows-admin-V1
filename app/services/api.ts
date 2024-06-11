@@ -1,15 +1,36 @@
 'use client'
+
+// import { useEffect, useState } from "react";
+// import { useAuth } from "../../context/AuthContext";
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-const token = localStorage.getItem("accessToken");
+// const [accessToken, setToken] = useState('');
+// const { accessToken } = useAuth();
+
+// const getNewToken
+
+// useEffect(() => {
+//   const getToken = async () => {
+    
+
+//     if (accessToken) {
+//       setToken(accessToken);
+//     }
+//   }
+  
+//   getToken();
+// }, [])
+
 
 
 export const getAllJobs = async () => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/jobs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     })
       .then((response) => response.json());
@@ -24,12 +45,14 @@ export const getAllJobs = async () => {
 };
 
 export const createJob = async (data: any) => {
+  
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/jobs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(data),
     }).then((response) => response.json());
@@ -41,6 +64,7 @@ export const createJob = async (data: any) => {
 
 
 export const getJob = async (id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       BASE_URL + "/jobs/" + id,
@@ -48,7 +72,7 @@ export const getJob = async (id: string) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     ).then((response) => response.json());
@@ -63,6 +87,7 @@ export const getJob = async (id: string) => {
 
 
 export const editJob = async (data: any, id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id,
@@ -70,7 +95,7 @@ export const editJob = async (data: any, id: string) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(data),
       }
@@ -85,6 +110,7 @@ export const editJob = async (data: any, id: string) => {
 
 export const deleteJob = async (id: string) => {
 
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id,
@@ -92,7 +118,7 @@ export const deleteJob = async (id: string) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     ).then((response) => response.json());
@@ -104,12 +130,13 @@ export const deleteJob = async (id: string) => {
 
 
 export const getPlatforms = async () => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources/platforms", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     }).then((response) => response.json());
 
@@ -122,12 +149,13 @@ export const getPlatforms = async () => {
 };
 
 export const createPlatform = async (data: any) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources/platforms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(data),
     }).then((response) => response.json());
@@ -141,12 +169,13 @@ export const createPlatform = async (data: any) => {
 };
 
 export const getPlatform = async (id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources/platforms/" + id, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     }).then((response) => response.json());
 
@@ -159,6 +188,7 @@ export const getPlatform = async (id: string) => {
 };
 
 export const editPlatform = async (data: any, id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/resources/platforms/" + id,
@@ -166,7 +196,7 @@ export const editPlatform = async (data: any, id: string) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(data),
       }
@@ -180,6 +210,7 @@ export const editPlatform = async (data: any, id: string) => {
 };
 
 export const deletePlatform = async (id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/resources/platforms/" + id,
@@ -187,7 +218,7 @@ export const deletePlatform = async (id: string) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     ).then((response) => response.json());
@@ -214,12 +245,13 @@ export const deletePlatform = async (id: string) => {
 // Resources endpoints
 
 export const getAllResources = async(id?: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources?platform_id=" + id, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     }).then((response) => response.json());
     return response.data;
@@ -229,12 +261,13 @@ export const getAllResources = async(id?: string) => {
 };
 
 export const getSingleResource = async(id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources/details/" + id, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     }).then((response) => response.json());
     return response.data;
@@ -244,12 +277,13 @@ export const getSingleResource = async(id: string) => {
 };
 
 export const createResource = async (data: any) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(data),
     }).then((response) => response.json());
@@ -262,6 +296,7 @@ export const createResource = async (data: any) => {
 };
 
 export const editResource = async (data: any, id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/resources/update/" + id,
@@ -269,7 +304,7 @@ export const editResource = async (data: any, id: string) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(data),
       }
@@ -283,6 +318,7 @@ export const editResource = async (data: any, id: string) => {
 };
 
 export const deleteResource = async (id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/resources/remove/" + id,
@@ -290,7 +326,50 @@ export const deleteResource = async (id: string) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    ).then((response) => response.json());
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addScreen = async (data: any, id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      BASE_URL + "/resources/add-screens/" + id,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(data),
+      }
+    ).then((response) => response.json());
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteScreen = async (res_id: string, id: string) => {
+ const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + "/resources/remove-screen/" + res_id + "/" + id,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     ).then((response) => response.json());

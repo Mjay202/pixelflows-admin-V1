@@ -3,11 +3,21 @@ import Edit from "./edit-company";
 import Delete from "./delete-company";
 import AddScreen from "./add-screen";
 import Link from "next/link";
+import { initModals } from "flowbite";
 
 
-export default function WebTable({ query }: { query?: string }) {
+export default function WebTable({
+  platformId,
+  resources,
+}: {
+  platformId: string;
+  resources: any;
+  })
+
+{
+
   return (
-    <div className="relative mt-2 lg:mt-3  sm:rounded-lg mb-32">
+    <div className="relative lg:mt-7 mt-7  sm:rounded-lg mb-32">
       <table className="w-full relative border-x md:overflow-x-auto text-sm text-left rtl:text-right text-gray-500 ">
         <thead className="text-sm border-b text-gray-900 border-t bg-white  hover:bg-gray-50 items-center">
           <tr className="">
@@ -43,517 +53,104 @@ export default function WebTable({ query }: { query?: string }) {
           </tr>
         </thead>
         <tbody className="text-xs">
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
+          {resources &&
+            resources.map((resource: any) => (
+              <tr className="bg-white border-b hover:bg-gray-50">
+                <td className="w-4 p-4">
+                  <div className="flex items-center">
+                    <input
+                      id="checkbox-table-search-1"
+                      type="checkbox"
+                      className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
+                      required
+                    />
+                    <label
+                      htmlFor="checkbox-table-search-1"
+                      className="sr-only"
+                    >
+                      checkbox
+                    </label>
+                  </div>
+                </td>
+                <th
+                  scope="row"
+                  className="px-1 py-3 font-medium whitespace-nowrap"
+                >
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-gray-900">{resource.name}</span>
+                    <span className="text-gray-700 font-light">
+                      {" "}
+                      {/* catalogapp.io */}
+                    </span>
+                  </div>
+                </th>
+                <td
+                  scope="row"
+                  className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
+                >
+                  {resource.continent}
+                </td>
+                <td
+                  scope="row"
+                  className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
+                >
+                  {resource.description}
+                </td>
+                <td
+                  scope="row"
+                  className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
+                >
+                  {resource.screens.length}
+                </td>
 
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
+                <td
+                  scope="row"
+                  className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex items-center justify-between gap-x-4"
+                >
+                  <Link
+                    href={`/dashboard/inspirations/resources/web/${resource._id}`}
+                  >
+                    <Svg src="view" w={16} h={11} />
+                  </Link>
+                  <button
+                    id="#add1"
+                    onMouseDown={initModals}
+                    data-modal-target={`add-modal-${resource._id}`}
+                    data-modal-toggle={`add-modal-${resource._id}`}
+                    className="block text-white"
+                    type="button"
+                  >
+                    <Svg src="add" w={12} h={12} />
+                  </button>
+                  <AddScreen
+                    resourceId={resource._id}
+                    platformId={platformId}
+                  />
+                  <button
+                    id="#edit1"
+                    onMouseDown={initModals}
+                    data-modal-target={`edit-modal-${resource._id}-1`}
+                    data-modal-toggle={`edit-modal-${resource._id}-1`}
+                    className="block text-white self-center justify-center"
+                    type="button"
+                  >
+                    <Svg src="edit" w={16} h={16} />
+                  </button>
+                  <Edit id={resource._id} platformId={platformId} />
+                  <button
+                    onMouseDown={initModals}
+                    data-modal-target={`delete-modal-${resource._id}`}
+                    data-modal-toggle={`delete-modal-${resource._id}`}
+                    className=" block text-white self-center justify-center"
+                    type="button"
+                  >
+                    <Svg src="delete" w={15} h={16} />
+                  </button>
 
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
-          <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="w-4 p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500"
-                  required
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th scope="row" className="px-1 py-3 font-medium whitespace-nowrap">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-gray-900"> Catalog</span>
-                <span className="text-gray-700 font-light"> catalogapp.io</span>
-              </div>
-            </th>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal  text-gray-900 whitespace-nowrap"
-            >
-              Asia
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              Brings all your news into one place
-            </td>
-            <td
-              scope="row"
-              className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-            >
-              250
-            </td>
-
-            <td
-              scope="row"
-              className="px-0 py-6 font-normal text-sm text-gray-600 whitespace-nowrap content-center inline-flex justify-start gap-x-5"
-            >
-              <Link href="/dashboard/inspirations/resources/web/new">
-                <Svg src="view" w={16} h={11} />
-              </Link>
-              <AddScreen />
-              <Edit />
-              <Delete />
-            </td>
-          </tr>
+                  <Delete id={resource._id} />
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 

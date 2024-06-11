@@ -606,13 +606,13 @@ export default function Add() {
               </div>
             </div>
 
-            <div className="flex gap-x-3 justify-center mt-5 mb-3">
+            <div className="flex gap-x-3 justify-center px-4 pb-4 mt-5 mb-3">
               <button
                 type="button"
                 data-modal-toggle="add-modal-4"
                 data-modal-target="add-modal-4"
                 data-modal-hide="add-modal-5"
-                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-20 py-2.5 text-center"
+                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2 text-center"
               >
                 <span className="sr-only">Close modal</span>
                 Go back
@@ -623,7 +623,7 @@ export default function Add() {
                 data-modal-hide="add-modal-5"
                 data-modal-toggle="add-modal-5"
                 data-modal-target="add-modal-5"
-                className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
+                className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-14 py-2 text-center"
               >
                 Post Job
               </button>
