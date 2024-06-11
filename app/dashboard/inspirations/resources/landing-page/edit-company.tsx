@@ -33,7 +33,7 @@ export default function Edit({ id, platformId }: { id: string, platformId: strin
       }
     }
     getResource();
-  }, [])
+  }, [id])
   
   
  const [uploaded, setUploaded] = useState<boolean>(false);

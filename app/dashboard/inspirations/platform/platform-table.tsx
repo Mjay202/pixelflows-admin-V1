@@ -70,8 +70,8 @@ export default function PlatformTable({ platforms }: { platforms: [] }) {
                   className="px-0 pt-2 pb-4 text-gray-900 whitespace-nowrap"
                 >
                   <div className="grid grid-cols-3  gap-x-2 gap-y-3">
-                    {platform.tags.map((tag: any) => (
-                      <Badges name={tag} />
+                    {platform.tags.map((tag: any, index: number) => (
+                      <Badges name={tag} key={index} />
                     ))}
                   </div>
                 </td>

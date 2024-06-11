@@ -41,7 +41,7 @@ export default function Edit({
       }
     };
     getResource();
-  }, []);
+  }, [id]);
 
   const [uploaded, setUploaded] = useState<boolean>(false);
   const [uploaded2, setUploaded2] = useState<boolean>(false);

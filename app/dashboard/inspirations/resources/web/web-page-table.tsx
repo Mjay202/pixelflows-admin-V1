@@ -54,8 +54,8 @@ export default function WebTable({
         </thead>
         <tbody className="text-xs">
           {resources &&
-            resources.map((resource: any) => (
-              <tr className="bg-white border-b hover:bg-gray-50">
+            resources.map((resource: any,) => (
+              <tr className="bg-white border-b hover:bg-gray-50" key={resource._id}>
                 <td className="w-4 p-4">
                   <div className="flex items-center">
                     <input

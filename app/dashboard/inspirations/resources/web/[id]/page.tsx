@@ -10,7 +10,7 @@ import AddScreen from "../add-screen";
 import DeleteScreen from "../delete-screen";
 
 
-function webPage({ params }: { params: { id: string } }) {
+const webPage = ({ params }: { params: { id: string } }) => {
  
   const [resource, setResource] = useState<any>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -31,7 +31,7 @@ function webPage({ params }: { params: { id: string } }) {
     }
 
     getResource();
-  }, [])
+  }, [params.id])
   
   const initModal = (id: string) => {
     initModals();
@@ -103,8 +103,8 @@ function webPage({ params }: { params: { id: string } }) {
         </div>
         <div className="flex gap-x-2">
           {tags &&
-            tags.map((tag: any) => (
-              <span className="ms-1 text-xs self-center font-normal text-gray-700 md:ms-2 bg-gray-200 rounded-md justify-center py-1 px-3">
+            tags.map((tag: any, index: number) => (
+              <span key={index} className="ms-1 text-xs self-center font-normal text-gray-700 md:ms-2 bg-gray-200 rounded-md justify-center py-1 px-3">
                 {tag}
               </span>
             ))}
