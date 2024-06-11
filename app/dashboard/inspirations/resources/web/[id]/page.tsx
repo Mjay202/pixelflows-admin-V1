@@ -10,7 +10,7 @@ import AddScreen from "../add-screen";
 import DeleteScreen from "../delete-screen";
 
 
-const webPage = ({ params }: { params: { id: string } }) => {
+const WebPage = ({ params }: { params: { id: string } }) => {
  
   const [resource, setResource] = useState<any>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -197,4 +197,4 @@ const webPage = ({ params }: { params: { id: string } }) => {
   );
 }
 
-export default webPage;
+export default WebPage;
