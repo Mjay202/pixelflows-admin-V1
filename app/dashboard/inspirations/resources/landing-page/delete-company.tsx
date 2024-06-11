@@ -7,9 +7,7 @@ import { toast } from "sonner";
 export default function Delete({id}: {id: any}) {
   const handleDelete = async() => {
     const response = await deleteResource(id)
-    
     if (response.status == true) {
-
       toast.success('Deleted successfully');
       setTimeout(() => {
         window.location.reload();
