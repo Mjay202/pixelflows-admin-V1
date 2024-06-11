@@ -19,13 +19,13 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 import { useRouter } from "next/navigation";
-import { getJob } from "@/app/services/api";
+import { editJob, getJob } from "@/app/services/api";
 
 
 
 export default function Edit({ id }: { id: string }) {
 
-    const router = useRouter();
+  
     const [value, setValue] = useState("Lorem ipsum dolor sit amet.");
 
     const [title, setTitle] = useState<string>("");
@@ -104,16 +104,7 @@ export default function Edit({ id }: { id: string }) {
       location_flexibility,
     };
 
-    const token = localStorage.getItem("accessToken");
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      }).then((response) => response.json());
+    const response = await editJob(data, id);
 
       if (response.data) {
         console.log(response);
@@ -129,15 +120,14 @@ export default function Edit({ id }: { id: string }) {
           },
           error: "Error",
         });
-        router.refresh();
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
       if (response.error) {
         const errorMsg = response.error.message[0];
         toast.error(errorMsg);
       }
-    } catch (error) {
-      return error;
-    }
   };
   return (
     <div>

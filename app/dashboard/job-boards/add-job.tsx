@@ -12,7 +12,6 @@ import { createJob } from "@/app/services/api";
 
 
 export default function Add() {
-  const router = useRouter();
  const [value, setValue] = useState(
    "Lorem ipsum dolor sit amet....."
  );
@@ -86,7 +85,9 @@ export default function Add() {
         },
         error: "Error",
       });
-      router.refresh();
+     setTimeout(() => {
+       window.location.reload();
+     }, 2000);
     }
     if (response.error) {
       const errorMsg = response.error.message[0];

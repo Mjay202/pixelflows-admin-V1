@@ -7,39 +7,28 @@ import { createPlatform } from "@/app/services/api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-interface Category {
-  id: number;
-  name: string;
-}
+
 type data = {
   name: string,
   tags: any
 }
   
 export default function Add() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [name, setName] = useState("");
-  const router = useRouter();
+   const [categories, setCategories] = useState<string[]>([]);
+   const [category, setCategory] = useState("");
+   const [name, setName] = useState("");
+ 
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && name.trim() !== "") {
-      const newCategory: Category = {
-        id: categories.length ? categories[categories.length - 1].id + 1 : 1,
-        name: name,
-      };
-      setCategories([...categories, newCategory]);
-      setName("");
-    }
+     if (e.key === "Enter" && category.trim() !== "") {
+       setCategories([...categories, category.trim()]);
+     }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const deleteCat = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+  const deleteCat = (e: MouseEvent<HTMLButtonElement>, category: string) => {
     e.preventDefault();
-
-    setCategories(categories.filter((cat) => cat.id !== id));
+    setCategories(categories.filter((cat) => cat !== category));
+     setCategory("");
   };
 
   
@@ -57,14 +46,16 @@ export default function Add() {
         );
 
       toast.promise(promise, {
-        loading: "Job adding...",
+        loading: "Platform adding...",
         success: (data: any) => {
           return `${data.name} has been successfully added`;
         },
         error: "Error",
       }
       );
-      router.refresh();
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
     
     }
     if (response.statusCode === 409) {
@@ -72,7 +63,7 @@ export default function Add() {
       toast.error(response.error.error + '. ' + response.error.message[0] );
     }
     if (response.statusCode === 400) {
-   ;
+   
       toast.error(response.error.error + ', ' + response.error.message[0] );
     }
     
@@ -146,6 +137,7 @@ export default function Add() {
                   type="text"
                   name="name"
                   id="name"
+                  onChange={(e) => setName(e.target.value)}
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
                   placeholder="Enter Platform name"
                   required
@@ -162,8 +154,8 @@ export default function Add() {
                   type="text"
                   name="categories"
                   id="categories"
-                  onChange={handleChange}
-                  value={name}
+                  onChange={(e) => setCategory(e.target.value)}
+                  value={category}
                   onKeyDown={handleKeyPress}
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
                   placeholder="Enter category name and press enter to save"
@@ -171,20 +163,13 @@ export default function Add() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-5 gap-x-0 gap-y-1 mt-3">
+            <div className="grid grid-cols-3 gap-x-1 gap-y-2 mt-6 px-4 col-span-2 w-full">
               {categories &&
-                categories.map((category) => (
-                  <div key={category.id} className="col-span-2 px-4">
-                    <span
-                      className={`bg-purple-100 text-sm font-medium m-0 ${
-                        categories ? "inline-flex" : "hidden"
-                      }items-center gap-2 justify-self-center px-2 py-0.5 rounded-full`}
-                    >
-                      {category.name}
-                      <button
-                        onMouseDown={(e) => deleteCat(e, category.id)}
-                        className="ml-2"
-                      >
+                categories.map((category: string, index: number) => (
+                  <div key={index} className="flex justify-between">
+                    <span className="bg-gray-100 text-xs font-medium m-0 text-black inline-flex w-fit items-center gap-1 justify-self-center px-1.5 py-1 rounded-full hover:bg-purple-50">
+                      {category}
+                      <button onMouseDown={(e) => deleteCat(e, category)}>
                         <Svg src="close" w={8} h={8} />
                       </button>
                     </span>
@@ -203,8 +188,6 @@ export default function Add() {
                 type="button"
                 onMouseDown={handleSubmit}
                 data-modal-hide="add-modal"
-                // data-modal-toggle="add-modal-5"
-                // data-modal-target="add-modal-5"
                 className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-medium rounded-lg text-sm px-14 py-2.5 text-center"
               >
                 Add platform

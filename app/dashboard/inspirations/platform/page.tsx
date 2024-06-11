@@ -14,7 +14,10 @@ function PlatformPage() {
    
     const getAllPlatforms = async() => {
       const response = await getPlatforms();
-      setPlatforms(response);
+      if (response) {
+     
+        setPlatforms(response);
+   }
     }
 
     getAllPlatforms();

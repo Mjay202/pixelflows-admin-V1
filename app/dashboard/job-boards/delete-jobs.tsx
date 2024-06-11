@@ -1,41 +1,27 @@
 "use client";
 import Svg from "@/app/components/svg";
+import { deleteJob } from "@/app/services/api";
 import { toast } from "sonner";
 
 export default function Delete({ id }: {id: string} ) {
  
   const handleDelete = async(id: string) => {
 
-    const token = localStorage.getItem("accessToken");
-   
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        // body: JSON.stringify(data)
-      }).then((response) => response.json());
+    const response = await deleteJob(id);
+    
+if (response) {
+  const promise = () =>
+    new Promise((resolve) => setTimeout(() => resolve({ name: "Job" }), 2000));
 
-      if (response) {
-        console.log(response);
-        const promise = () =>
-          new Promise((resolve) =>
-            setTimeout(() => resolve({ name: "Job" }), 2000)
-          );
-
-        toast.success("Deleted successfully");
-        // router.refresh();
-      }
-      if (response.error) {
-        const errorMsg = response.error.message[0];
-        toast.error(errorMsg);
-      }
-    } catch (error) {
-      return error;
-    }
-
+  toast.success("Deleted successfully");
+ setTimeout(() => {
+   window.location.reload();
+ }, 2000);
+}
+if (response.error) {
+  const errorMsg = response.error.message[0];
+  toast.error(errorMsg);
+}
   };
   const onCancel = () => {
     toast.info("Cancelled!");

@@ -1,7 +1,9 @@
 'use client'
+import Svg from "@/app/components/svg";
 import Badges from "../../../components/badges";
 import Delete from "./delete-platform";
 import Edit from "./edit-platform";
+import { initModals } from "flowbite";
 
 
 export default function PlatformTable({ platforms }: { platforms: [] }) {
@@ -71,16 +73,33 @@ export default function PlatformTable({ platforms }: { platforms: [] }) {
                     {platform.tags.map((tag: any) => (
                       <Badges name={tag} />
                     ))}
-                   
                   </div>
                 </td>
 
                 <td className="flex justify-start items-center pl-16 py-4 gap-x-3">
-                  <Edit />
-                  <Delete />
+                  <button
+                    id="#edit"
+                    onMouseDown={initModals}
+                    data-modal-target={`edit-modal-${platform._id}`}
+                    data-modal-toggle={`edit-modal-${platform._id}`}
+                    className="block text-white"
+                    type="button"
+                  >
+                    <Svg src="edit" w={16} h={16} />
+                  </button>
+                  <Edit id={platform._id}/>
+                  <button
+                    onMouseDown={initModals}
+                    data-modal-target={`delete-modal-${platform._id}`}
+                    data-modal-toggle={`delete-modal-${platform._id}`}
+                    className="block text-white"
+                    type="button"
+                  >
+                    <Svg src="delete" w={15} h={16} />
+                  </button>
+                  <Delete id={platform._id} />
                 </td>
               </tr>
-              
             ))}
         </tbody>
       </table>
