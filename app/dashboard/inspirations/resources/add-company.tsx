@@ -353,8 +353,8 @@ export default function Add({ id }: { id: string })
                 >
                   <option selected>Select company categories</option>
                   {initCategories &&
-                    initCategories.map((cat: any) => (
-                      <option value={cat}>{cat}</option>
+                    initCategories.map((cat: any, index) => (
+                      <option value={cat} key={index}>{cat}</option>
                     ))}
                 </select>
               </div>
