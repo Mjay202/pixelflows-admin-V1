@@ -345,8 +345,8 @@ export default function Edit({
                 >
                   <option selected>Select company categories</option>
                   {initCategories &&
-                    initCategories.map((cat: any) => (
-                      <option value={cat}>{cat}</option>
+                    initCategories.map((cat: any , index: number) => (
+                      <option value={cat} key={index}>{cat}</option>
                     ))}
                 </select>
               </div>

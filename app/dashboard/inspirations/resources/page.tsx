@@ -41,6 +41,7 @@ function ResourcesPage() {
                 platforms.map((platform: any, index: number) => (
                   <li className="me-2" role="presentation" key={platform._id}>
                     <button
+                      key={index}
                       className={`inline-block ${
                         toggle == index
                           ? " border-purple-700 p-2 text-purple-700 hover:text-purple-800"
@@ -66,6 +67,7 @@ function ResourcesPage() {
             {platforms &&
               platforms.map((platform: any, index: number) => (
                 <div
+                  key={index}
                   className={`${
                     toggle == index ? "block" : "hidden"
                   }  p-4 rounded-lg`}
@@ -125,8 +127,7 @@ function ResourcesPage() {
                   </div>
                 </div>
               ))}
-            {/* <LandingPage /> */}
-            {/* <WebPage /> */}
+          
           </div>
         </div>
       ) : (
