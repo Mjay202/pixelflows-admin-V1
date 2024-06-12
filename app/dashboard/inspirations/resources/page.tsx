@@ -1,12 +1,11 @@
 "use client";
-
-import { initTabs } from "flowbite";
 import { useEffect, useState } from "react";
 import { getPlatforms } from "@/app/services/api";
 import ButtonWithIcon from "@/app/components/button-with-icon";
 import Search from "@/app/components/search";
 import ResourceTable from "./resource-table";
 import Add from "./add-company";
+
 
 function ResourcesPage() {
   const [platforms, setPlatforms] = useState<any>([]);
@@ -96,7 +95,10 @@ function ResourcesPage() {
                   </div>
                   <div>
                     {platform ? (
-                      <ResourceTable platformId={platform._id} platformName={platform.name} />
+                      <ResourceTable
+                        platformId={platform._id}
+                        platformName={platform.name}
+                      />
                     ) : (
                       <div className="text-center mt-36">
                         <div role="status">

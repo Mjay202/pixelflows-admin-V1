@@ -5,9 +5,6 @@ import 'flowbite';
 import { Toaster} from "sonner";
 import { AuthProvider } from "@/context/AuthContext";
 
-
-
-
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
