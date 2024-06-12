@@ -3,7 +3,7 @@ import Search from "@/app/components/search";
 import WebTable from "./web-page-table";
 import Add from "./add-company";
 import { useEffect, useState } from "react";
-import { getAllResources, getPlatformId } from "@/app/services/api";
+import { getPlatformId, getPlatformResources } from "@/app/services/api";
 
 
 export default function WebPage() {
@@ -16,7 +16,7 @@ export default function WebPage() {
        const platformId = await getPlatformId("web");
        if (platformId) {
          setPlatformID(platformId);
-         const response = await getAllResources(platformId);
+         const response = await getPlatformResources(platformId);
          setResources(response);
         
        }

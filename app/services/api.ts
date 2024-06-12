@@ -244,7 +244,7 @@ export const deletePlatform = async (id: string) => {
 
 // Resources endpoints
 
-export const getAllResources = async(id?: string) => {
+export const getPlatformResources = async(id?: string) => {
  const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(BASE_URL + "/resources?platform_id=" + id, {

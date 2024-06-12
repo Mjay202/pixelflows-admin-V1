@@ -1,5 +1,5 @@
 "use client";
-import { KeyboardEvent, MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import Svg from "@/app/components/svg";
 import { toast } from "sonner";
 import {
@@ -9,7 +9,7 @@ import {
 } from "next-cloudinary";
 import { initModals } from "flowbite";
 import Image from "next/image";
-import { createResource } from "@/app/services/api";
+import { createResource, getPlatform } from "@/app/services/api";
 
 export default function Add({ id }: { id: string }) {
   const [url, seturl] = useState<string>("");
@@ -25,13 +25,18 @@ export default function Add({ id }: { id: string }) {
 
   // Category UI logic
   const [categories, setCategories] = useState<string[]>([]);
+  const [initCategories, setInitCategories] = useState<string[]>([]);
   const [category, setCategory] = useState("");
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && category.trim() !== "") {
-      setCategories([...categories, category.trim()]);
-    }
-  };
+  useEffect(() => {
+    const getResource = async () => {
+      const response = await getPlatform(id);
+      if (response) {
+        setInitCategories(response.tags);
+      }
+    };
+    getResource();
+  }, [id]);
 
   const deleteCat = (e: MouseEvent<HTMLButtonElement>, category: string) => {
     e.preventDefault();
@@ -42,6 +47,7 @@ export default function Add({ id }: { id: string }) {
   const addCancel = () => {
     toast.warning("Add has been cancelled!");
   };
+
   const handleSubmit = async () => {
     const data = {
       name,
@@ -82,8 +88,8 @@ export default function Add({ id }: { id: string }) {
       <button
         id="#add1"
         onMouseDown={initModals}
-        data-modal-target="add-modal-11"
-        data-modal-toggle="add-modal-11"
+        data-modal-target="add-modal-1"
+        data-modal-toggle="add-modal-1"
         className="bg-purple-600 border ml-1 items-center font-medium border-gray-300 text-white text-xs rounded-md hover:border-gray-400  transition ease-out duration-300 py-1.5 px-3  me-2 mb-2"
         type="button"
       >
@@ -97,7 +103,7 @@ export default function Add({ id }: { id: string }) {
         Add company
       </button>
       <div
-        id="add-modal-11"
+        id={`add-modal-1`}
         tab-index="-1"
         aria-hidden="true"
         className="hidden overflow-y-auto overflow-x-hidden fixed px-4 mt-2 top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -113,7 +119,7 @@ export default function Add({ id }: { id: string }) {
                 type="button"
                 onMouseDown={addCancel}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                data-modal-toggle="add-modal-11"
+                data-modal-toggle={`add-modal-1`}
               >
                 <svg
                   className="w-3 h-3"
@@ -134,158 +140,156 @@ export default function Add({ id }: { id: string }) {
               </button>
             </div>
 
-            <form className="p-3 md:p-4 mt-2">
-              <div className="grid gap-6 mb-4 grid-cols-2">
-                <div className="col-span-2 grid grid-cols-2 justfiy-between gap-3">
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor="logo"
-                      className="block mb-2 text-sm font-semibold text-gray-900"
+            <div className="grid gap-6 mb-4 grid-cols-2 p-3 md:p-4 mt-2">
+              <div className="col-span-2 grid grid-cols-2 justfiy-between gap-3">
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="logo"
+                    className="block mb-2 text-sm font-semibold text-gray-900"
+                  >
+                    Company Logo
+                  </label>
+                  <div className="px-3 py-5 border-dashed rounded border-2 border-purple-300 bg-transparent inline-flex flex-col items-center justify-center align-center">
+                    <CldUploadWidget
+                      uploadPreset="upload-preset-one"
+                      onSuccess={(results: CloudinaryUploadWidgetResults) => {
+                        if (results) {
+                          const resultInfo: CloudinaryUploadWidgetInfo =
+                            results.info as CloudinaryUploadWidgetInfo;
+                          setLogo(resultInfo.secure_url as string);
+                          setUploaded(true);
+                        }
+                      }}
                     >
-                      Company Logo
-                    </label>
-                    <div className="px-3 py-5 border-dashed rounded border-2 border-purple-300 bg-transparent inline-flex flex-col items-center justify-center align-center">
-                      <CldUploadWidget
-                        uploadPreset="upload-preset-one"
-                        onSuccess={(results: CloudinaryUploadWidgetResults) => {
-                          if (results) {
-                            const resultInfo: CloudinaryUploadWidgetInfo =
-                              results.info as CloudinaryUploadWidgetInfo;
-                            setLogo(resultInfo.secure_url as string);
-                            setUploaded(true);
-                          }
-                        }}
-                      >
-                        {({ open }) => {
-                          return (
-                            <button className="p-3" onMouseDown={() => open()}>
-                              <Svg src="upload" w={20} h={20} />
-                            </button>
-                          );
-                        }}
-                      </CldUploadWidget>
-                      <h3 className="text-xs text-purple-600 italic mt-2">
-                        {uploaded
-                          ? "Upload sucessfull, Proceed.."
-                          : " Click icon to upload logo"}
-                      </h3>
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="logo"
-                      className="block mb-2 text-sm font-semibold text-gray-900"
-                    >
-                      Company Thumbnail
-                    </label>
-                    <div className="px-3 py-5 border-dashed rounded border-2 border-purple-300 bg-transparent inline-flex flex-col items-center justify-center align-center">
-                      <CldUploadWidget
-                        uploadPreset="upload-preset-one"
-                        onSuccess={(results: CloudinaryUploadWidgetResults) => {
-                          if (results) {
-                            const resultInfo: CloudinaryUploadWidgetInfo =
-                              results.info as CloudinaryUploadWidgetInfo;
-                            setPreview_image(resultInfo.secure_url as string);
-                            setUploaded2(true);
-                          }
-                        }}
-                      >
-                        {({ open }) => {
-                          return (
-                            <button className="p-3" onMouseDown={() => open()}>
-                              <Svg src="upload" w={20} h={20} />
-                            </button>
-                          );
-                        }}
-                      </CldUploadWidget>
-                      <h3 className="text-xs text-purple-600 italic mt-2">
-                        {uploaded2
-                          ? "Upload sucessfull, Proceed.."
-                          : " Click icon to upload thumbnail"}
-                      </h3>
-                    </div>
+                      {({ open }) => {
+                        return (
+                          <button className="p-3" onMouseDown={() => open()}>
+                            <Svg src="upload" w={20} h={20} />
+                          </button>
+                        );
+                      }}
+                    </CldUploadWidget>
+                    <h3 className="text-xs text-purple-600 italic mt-2">
+                      {uploaded
+                        ? "Upload sucessfull, Proceed.."
+                        : " Click icon to upload logo"}
+                    </h3>
                   </div>
                 </div>
-                <div className="col-span-2">
+                <div>
                   <label
-                    htmlFor="name"
+                    htmlFor="logo"
                     className="block mb-2 text-sm font-semibold text-gray-900"
                   >
-                    Company name<span className="text-red-700">*</span>
+                    Company Thumbnail
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                    placeholder="Enter company name"
-                    required
-                  />
-                </div>
-                <div className="col-span-2">
-                  <label
-                    htmlFor="website"
-                    className="block mb-2 text-sm font-semibold text-gray-900"
-                  >
-                    Company Website<span className="text-red-700">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="website"
-                    id="website"
-                    value={url}
-                    onChange={(e) => seturl(e.target.value)}
-                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                    placeholder="Enter category website and press enter to save"
-                    required
-                  />
-                </div>
-                <div className="col-span-2">
-                  <label
-                    htmlFor="description"
-                    className="block mb-2 text-sm font-semibold text-gray-900"
-                  >
-                    Company descriptions<span className="text-red-700">*</span>
-                  </label>
-
-                  <textarea
-                    id="message"
-                    rows={4}
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Type the descriptions here..."
-                  ></textarea>
+                  <div className="px-3 py-5 border-dashed rounded border-2 border-purple-300 bg-transparent inline-flex flex-col items-center justify-center align-center">
+                    <CldUploadWidget
+                      uploadPreset="upload-preset-one"
+                      onSuccess={(results: CloudinaryUploadWidgetResults) => {
+                        if (results) {
+                          const resultInfo: CloudinaryUploadWidgetInfo =
+                            results.info as CloudinaryUploadWidgetInfo;
+                          setPreview_image(resultInfo.secure_url as string);
+                          setUploaded2(true);
+                        }
+                      }}
+                    >
+                      {({ open }) => {
+                        return (
+                          <button className="p-3" onMouseDown={() => open()}>
+                            <Svg src="upload" w={20} h={20} />
+                          </button>
+                        );
+                      }}
+                    </CldUploadWidget>
+                    <h3 className="text-xs text-purple-600 italic mt-2">
+                      {uploaded2
+                        ? "Upload sucessfull, Proceed.."
+                        : " Click icon to upload thumbnail"}
+                    </h3>
+                  </div>
                 </div>
               </div>
-
-              <div className="flex gap-x-3 justify-center mt-10 mb-3">
-                <button
-                  type="button"
-                  onMouseDown={addCancel}
-                  data-modal-hide="add-modal-11"
-                  className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
+              <div className="col-span-2">
+                <label
+                  htmlFor="name"
+                  className="block mb-2 text-sm font-semibold text-gray-900"
                 >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  data-modal-target="add-modal-22"
-                  data-modal-toggle="add-modal-22"
-                  data-modal-hide="add-modal-11"
-                  className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
-                >
-                  Next
-                </button>
+                  Company name<span className="text-red-700">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
+                  placeholder="Enter company name"
+                  required
+                />
               </div>
-            </form>
+              <div className="col-span-2">
+                <label
+                  htmlFor="website"
+                  className="block mb-2 text-sm font-semibold text-gray-900"
+                >
+                  Company Website<span className="text-red-700">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="website"
+                  id="website"
+                  value={url}
+                  onChange={(e) => seturl(e.target.value)}
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
+                  placeholder="Enter category website and press enter to save"
+                  required
+                />
+              </div>
+              <div className="col-span-2">
+                <label
+                  htmlFor="description"
+                  className="block mb-2 text-sm font-semibold text-gray-900"
+                >
+                  Company descriptions<span className="text-red-700">*</span>
+                </label>
+
+                <textarea
+                  id="message"
+                  rows={2}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Type the descriptions here..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div className="flex gap-x-3 justify-center pb-4 mt-6 w-full mb-3">
+              <button
+                type="button"
+                onMouseDown={addCancel}
+                data-modal-hide="add-modal"
+                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                data-modal-target={`add-modal-2`}
+                data-modal-toggle={`add-modal-2`}
+                data-modal-hide={`add-modal-1`}
+                className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <div
-        id="add-modal-22"
+        id={`add-modal-2`}
         tab-index="-2"
         aria-hidden="true"
         className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 px-4 left-0 z-50  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -301,8 +305,8 @@ export default function Add({ id }: { id: string }) {
                 type="button"
                 onMouseDown={addCancel}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                data-modal-toggle="add-modal-22"
-                data-modal-hide="add-modal-11"
+                data-modal-toggle={`add-modal-2`}
+                data-modal-hide={`add-modal-1`}
               >
                 <svg
                   className="w-3 h-3"
@@ -331,26 +335,31 @@ export default function Add({ id }: { id: string }) {
                 >
                   Company categories<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
-                  name="categories"
-                  id="categories"
-                  onChange={(e) => setCategory(e.target.value)}
+                <select
+                  name="category"
+                  id="category"
+                  // onSelectCapture={(e) => handleKeyPress}
                   value={category}
-                  onKeyDown={handleKeyPress}
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Enter category name and press enter to save"
-                  required
-                />
+                  onChange={(e) =>
+                    setCategories([...categories, e.target.value])
+                  }
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                >
+                  <option selected>Select company categories</option>
+                  {initCategories &&
+                    initCategories.map((cat: any) => (
+                      <option value={cat}>{cat}</option>
+                    ))}
+                </select>
               </div>
               <div
                 className={`col-span-2 grid ${
                   categories ? "inline-flex" : "hidden"
-                } grid-cols-3 gap-5 gap-y-1 justify-between px-5 pr-10`}
+                } grid-cols-3 gap-x-3 gap-y-3 justify-center px-5 pr-10 w-fit`}
               >
                 {categories &&
                   categories.map((category: string, index: number) => (
-                    <div key={index} className="flex justify-between">
+                    <div key={index} className="flex justify-between gap-x-2">
                       <span className="bg-gray-100 text-xs font-medium m-0 text-black inline-flex w-fit items-center gap-1 justify-self-center px-1.5 py-1 rounded-full hover:bg-purple-50">
                         {category}
                         <button onMouseDown={(e) => deleteCat(e, category)}>
@@ -374,10 +383,7 @@ export default function Add({ id }: { id: string }) {
                   onChange={(e) => setContinent(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 >
-                  <option selected>
-                   Choose continent
-                  </option>
-                  <option  value="africa">
+                  <option selected value="africa">
                     Africa
                   </option>
                   <option value="australia">Australia</option>
@@ -409,12 +415,12 @@ export default function Add({ id }: { id: string }) {
               </div>
             </div>
 
-            <div className="flex gap-x-3 justify-center mt-4 pb-4 mb-3">
+            <div className="flex gap-x-3 justify-center mt-2 pb-4 mb-3">
               <button
                 type="button"
-                data-modal-toggle="add-modal-11"
-                data-modal-target="add-modal-11"
-                data-modal-hide="add-modal-22"
+                data-modal-toggle={`add-modal-1`}
+                data-modal-target={`add-modal-1`}
+                data-modal-hide={`add-modal-2`}
                 className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
               >
                 <span className="sr-only">Close modal</span>
@@ -423,9 +429,9 @@ export default function Add({ id }: { id: string }) {
               <button
                 type="button"
                 onMouseDown={handleSubmit}
-                data-modal-hide="add-modal-22"
-                data-modal-toggle="add-modal-22"
-                data-modal-target="add-modal-22"
+                data-modal-hide={`add-modal-2`}
+                data-modal-toggle={`add-modal-2`}
+                data-modal-target={`add-modal-2`}
                 className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
               >
                 Save

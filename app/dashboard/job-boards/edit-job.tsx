@@ -215,13 +215,7 @@ export default function Edit({ id }: { id: string }) {
                   Job Description<span className="text-red-700">*</span>
                 </label>
                 <ReactQuill theme="snow" value={value} onChange={setValue} />
-                <Image
-                  src="/images/editor-img.png"
-                  width={500}
-                  height={390}
-                  className="me-1 w-ful"
-                  alt="logo"
-                />
+                
               </div>
             </div>
 
@@ -287,7 +281,7 @@ export default function Edit({ id }: { id: string }) {
               </button>
             </div>
 
-            <div className="grid gap-6 mb-4 grid-cols-2 p-5 md:p-4">
+            <div className="grid gap-6 mb-2 grid-cols-2 p-5 md:p-4">
               <div className="col-span-2">
                 <label
                   htmlFor="name"
@@ -352,36 +346,7 @@ export default function Edit({ id }: { id: string }) {
                   <option value="internship">Internship</option>
                 </select>
               </div>
-              <div className="col-span-2">
-                <label
-                  htmlFor="website"
-                  className="block mb-2 text-sm font-semibold text-gray-900"
-                >
-                  Salary type<span className="text-red-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="website"
-                  id="website"
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Select option"
-                />
-              </div>
-              <div className="col-span-2">
-                <label
-                  htmlFor="website"
-                  className="block mb-2 text-sm font-semibold text-gray-900"
-                >
-                  Salary Amount<span className="text-red-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="website"
-                  id="website"
-                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                  placeholder="Select option"
-                />
-              </div>
+              
               <div className="col-span-2">
                 <label
                   htmlFor="website"
@@ -402,7 +367,7 @@ export default function Edit({ id }: { id: string }) {
               </div>
             </div>
 
-            <div className="flex gap-x-3 justify-center mt-10 mb-3">
+            <div className="flex gap-x-3 justify-center mt-5 mb-3">
               <button
                 type="button"
                 data-modal-toggle={`${id}-1`}
@@ -619,13 +584,13 @@ export default function Edit({ id }: { id: string }) {
               </div>
             </div>
 
-            <div className="flex gap-x-3 justify-center mt-5 mb-3">
+            <div className="grid grid-cols-2 px-3 gap-x-3 justify-center mt-5 mb-3">
               <button
                 type="button"
                 data-modal-toggle={`${id}-2`}
                 data-modal-target={`${id}-2`}
                 data-modal-hide={`${id}-3`}
-                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-2.5 text-center"
+                className="text-black font-bold inline-flex items-center bg-white hover:bg-slate-200 transition ease-out duration-300  border-gray-300 border-2  focus:ring-blue-300 rounded-lg text-sm px-14 py-3 text-center"
               >
                 <span className="sr-only">Close modal</span>
                 Go back
@@ -636,7 +601,7 @@ export default function Edit({ id }: { id: string }) {
                 data-modal-hide={`${id}-3`}
                 data-modal-toggle={`${id}-3`}
                 data-modal-target={`${id}-3`}
-                className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-20 py-2.5 text-center"
+                className="text-white inline-flex items-center bg-purple-700 hover:bg-purple-900 transition ease-out duration-300 font-semibold rounded-lg text-sm px-14 py-3 text-center"
               >
                Update Job
               </button>

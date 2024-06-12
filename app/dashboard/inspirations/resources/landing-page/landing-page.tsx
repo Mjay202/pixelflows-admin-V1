@@ -27,9 +27,9 @@ export default function LandingPage() {
   return (
     <div
       className="hidden  rounded-lg"
-      id="landing-pages"
+      id="landing pages"
       role="tabpanel"
-      aria-labelledby="landing-pages-tab"
+      aria-labelledby="landing pages-tab"
     >
       <div className="flex justify-between items-center">
         <div>

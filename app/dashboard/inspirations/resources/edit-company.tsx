@@ -16,6 +16,7 @@ export default function Edit({
   id: string;
   platformId: string;
 }) {
+  const [platformName, setPlatformName] = useState<string>("");
   const [url, seturl] = useState<string>("");
   const [type, setType] = useState<string>("");
   const [logo, setLogo] = useState<string>("");
@@ -33,6 +34,7 @@ export default function Edit({
         setType(response.type);
         setLogo(response.logo);
         seturl(response.url);
+        setPlatformName(response.platform.name);
         setDescription(response.description);
         setContinent(response.continent);
         setName(response.name);
@@ -109,7 +111,7 @@ export default function Edit({
             <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
               <h3 className="text-sm font-bold text-gray-900 ">
                 Edit a company{" "}
-                <span className="text-purple-600">(Web)</span>
+                <span className="text-purple-600">({platformName})</span>
               </h3>
               <button
                 type="button"
@@ -295,7 +297,7 @@ export default function Edit({
             <div className="flex items-center justify-between p-3 md:p-4 border-b rounded-t">
               <h3 className="text-sm font-bold text-gray-900 ">
                 Edit a company 2{" "}
-                <span className="text-purple-600">(Web)</span>
+                <span className="text-purple-600">({platformName})</span>
               </h3>
               <button
                 type="button"
