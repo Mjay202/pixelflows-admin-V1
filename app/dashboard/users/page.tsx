@@ -98,8 +98,7 @@ function UsersPage() {
             svg="/svg/sort.svg"
             text="Sort"
           />
-          {/* <Add /> */}
-          {/* <AddJob /> */}
+       
         </div>
       </div>
 
