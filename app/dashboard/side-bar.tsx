@@ -60,6 +60,19 @@ export default function SideBar() {
                 <span className="ms-4 font-light text-sm">Team mates</span>
               </Link>
             </li>
+            <li className="">
+              <Link
+                href="/dashboard/ui-components"
+                className={` ${
+                  pathname === "/dashboard/ui-components"
+                    ? "text-purple-300"
+                    : "text-white "
+                } flex items-center p-3 hover:bg-slate-700 rounded-md transition duration-300  group`}
+              >
+                <Svg src="ui-comp" w={16} h={17} />
+                <span className="ms-4 font-light text-sm">UI Components</span>
+              </Link>
+            </li>
             <li>
               <button
                 type="button"
