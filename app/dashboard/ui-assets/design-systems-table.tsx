@@ -99,12 +99,7 @@ const DesignTable = ({ designs }: { designs: any }) => {
                 >
                   <span className="font-light ">{design.createdAt}</span>
                 </td>
-                {/* <td
-                  scope="row"
-                  className="px-0 py-3 font-normal text-gray-900 whitespace-nowrap"
-                >
-                  {design.company}
-                </td> */}
+            
 
                 <td
                   scope="row"
