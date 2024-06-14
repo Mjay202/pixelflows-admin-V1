@@ -1,40 +1,47 @@
 "use client";
 import Svg from "@/app/components/svg";
-import { deleteJob } from "@/app/services/api";
-import { useRouter } from "next/navigation";
+import { liftUserSuspsension, suspendUser } from "@/app/services/api";
 import { toast } from "sonner";
 
-export default function Delete({ id , back}: {id: string, back?: boolean} ) {
-  const router = useRouter();
-  const handleDelete = async(id: string) => {
+export default function Suspend({ id, suspended }: { id: string; suspended: boolean }) {
 
-    const response = await deleteJob(id);
+  const handleSuspend = async (id: string) => {
     
-if (response) {
-  const promise = () =>
-    new Promise((resolve) => setTimeout(() => resolve({ name: "Job" }), 2000));
+      if (suspended) {
+          const response = await liftUserSuspsension(id);
+            if (response.status == true) {
+              toast.success("Suspension lifted successfully");
 
-  toast.success("Deleted successfully");
-  if (back) {
-    router.push("/dashboard/job-boards");
-  }
-  
- setTimeout(() => {
-   window.location.reload();
- }, 2000);
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            }
+            if (response.status == false) {
+              const errorMsg = response.error.message[0];
+              toast.error(errorMsg);
+            }
+      } else {
+          const response = await suspendUser(id);
+          if (response.status == true) {
+
+            toast.success("Suspended successfully");
+
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          }
+          if (response.status == false) {
+            const errorMsg = response.error.message[0];
+            toast.error(errorMsg);
+          }
 }
-if (response.error) {
-  const errorMsg = response.error.message[0];
-  toast.error(errorMsg);
-}
+    
   };
   const onCancel = () => {
     toast.info("Cancelled!");
   };
   return (
     <div>
-      
-
       <div
         id={id}
         tab-index="-1"
@@ -70,7 +77,9 @@ if (response.error) {
               </div>
 
               <h3 className="mb-7 text-base md:text-sm font-semi-bold text-gray-500  dark:text-gray-400">
-                Are you sure you want to delete this job?
+                {suspended
+                  ? " Are you sure you want to lift this user suspension?"
+                  : " Are you sure you want to suspend this user?"}
               </h3>
               <div className="mb-3">
                 <button
@@ -84,10 +93,10 @@ if (response.error) {
                 <button
                   data-modal-hide={id}
                   type="button"
-                  onMouseDown={(e) => handleDelete(id)}
+                  onMouseDown={(e) => handleSuspend(id)}
                   className="text-rose-800 ms-6 bg-red-100 hover:bg-red-600 hover:text-white transition ease-out duration-300 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-12 py-2.5 text-center"
                 >
-                  Delete
+                  {suspended ? "Lift" : "Suspend"}
                 </button>
               </div>
             </div>

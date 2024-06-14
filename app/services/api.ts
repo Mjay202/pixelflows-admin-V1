@@ -109,8 +109,7 @@ export const editJob = async (data: any, id: string) => {
 };
 
 export const deleteJob = async (id: string) => {
-
- const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_BASE_URL + "/jobs/" + id,
@@ -126,7 +125,7 @@ export const deleteJob = async (id: string) => {
   } catch (error) {
     return error;
   }
-}
+};
 
 
 export const getPlatforms = async () => {
@@ -373,6 +372,220 @@ export const deleteScreen = async (res_id: string, id: string) => {
         },
       }
     ).then((response) => response.json());
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+
+// Users
+
+export const getAllUsers = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/admin/users", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
+
+    if (response) {
+      return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getProUsers = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/admin/users?plan=pro", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
+
+    if (response) {
+      return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getActiveUsers = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/admin/users?status=active", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
+
+    if (response) {
+      return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getUsersStat = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/admin/users/stats", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
+
+    if (response) {
+      return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const suspendUser = async (id: string) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + "/admin/users/suspend/" + id,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    ).then((response) => response.json());
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const liftUserSuspsension = async (id: string) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + "/admin/users/lift-suspension/" + id,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    ).then((response) => response.json());
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+// Design Systems
+
+export const getDesignSystems = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/design-system", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
+
+    if (response) {
+      return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getDesignSystem = async (id: string) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/design-system/" + id, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
+
+    if (response) {
+      return response.data;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addSDesignSystem = async (data: any) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/design-system", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    }).then((response) => response.json());
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const editDesignSystem = async (data: any, id: string) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/design-system/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    }).then((response) => response.json());
+    if (response) {
+      return response;
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteDesignSystem = async (id: string) => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(BASE_URL + "/design-system/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => response.json());
     if (response) {
       return response;
     }

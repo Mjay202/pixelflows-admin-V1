@@ -41,8 +41,8 @@ export default function Edit({ id }: { id: string }) {
     const [seniority_level, setSeniority_level] = useState<string>("");
     const [work_arrangement, setWork_arrangement] = useState<string>("");
     const [location_flexibility, setLocation_flexibility] = useState<string>("");
-    const [tags, setTags] = useState<string[]>([]);
-    const [tagInput, setTagInput] = useState<string>("");
+    // const [tags, setTags] = useState<string[]>([]);
+    // const [tagInput, setTagInput] = useState<string>("");
     
   useEffect(() => {
     const getEachJob = async (id: string) => {
@@ -69,18 +69,18 @@ export default function Edit({ id }: { id: string }) {
     getEachJob(id);
   }, [id]);
 
-  const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setTagInput(event.target.value);
-  };
+  // const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setTagInput(event.target.value);
+  // };
 
-  const handleTagKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && tagInput.trim() !== "") {
-      event.preventDefault();
-      setTags([...tags, tagInput.trim()]);
-      setTagInput("");
+  // const handleTagKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+  //   if (event.key === "Enter" && tagInput.trim() !== "") {
+  //     event.preventDefault();
+  //     setTags([...tags, tagInput.trim()]);
+  //     setTagInput("");
       
-    }
-  };
+  //   }
+  // };
 
   const editCancel = () => {
     toast.warning("Job editing process has been cancelled!");
@@ -97,7 +97,7 @@ export default function Edit({ id }: { id: string }) {
       company_url,
       company_logo,
       apply_url,
-      tags,
+      // tags,
       status,
       seniority_level,
       work_arrangement,
@@ -282,7 +282,7 @@ export default function Edit({ id }: { id: string }) {
             </div>
 
             <div className="grid gap-6 mb-2 grid-cols-2 p-5 md:p-4">
-              <div className="col-span-2">
+              {/* <div className="col-span-2">
                 <label
                   htmlFor="name"
                   className="block mb-2 text-sm font-semibold text-gray-900"
@@ -307,7 +307,7 @@ export default function Edit({ id }: { id: string }) {
                     </span>
                   ))}
                 </span>
-              </div>
+              </div> */}
               <div className="col-span-2">
                 <label
                   htmlFor="website"

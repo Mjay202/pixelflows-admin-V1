@@ -33,9 +33,7 @@ function ResourcesPage() {
           <div className="mb-4 border-b mt-6 border-gray-200 ">
             <ul
               className="flex flex-wrap -mb-px text-sm font-medium text-center"
-              id="default-styled-tab"
-              data-tabs-toggle="#default-styled-tab-content"
-              role="tablist"
+              
             >
               {platforms &&
                 platforms.map((platform: any, index: number) => (
@@ -47,15 +45,11 @@ function ResourcesPage() {
                           ? " border-purple-700 p-2 text-purple-700 hover:text-purple-800"
                           : "border-b-2"
                       } p-4 rounded-t-lg  hover:text-gray-600 hover:border-gray-300`}
-                      id={`${platform.name !== "" && platform.name}-styled-tab`}
-                      data-tabs-target={`#${
-                        platform.name !== "" && platform.name
-                      }`}
+                      id={`#${platform.name !== "" && platform.name}-styled-tab`}
                       type="button"
-                      role="tab"
+    
                       onMouseDown={(e) => setToggle(index)}
-                      aria-controls={`${platform.name !== "" && platform.name}`}
-                      aria-selected="true"
+                     
                     >
                       {platform.name}
                     </button>
@@ -71,9 +65,8 @@ function ResourcesPage() {
                   className={`${
                     toggle == index ? "block" : "hidden"
                   }  p-4 rounded-lg`}
-                  id={`${platform.name !== "" && platform.name}`}
-                  role="tabpanel"
-                  aria-labelledby={`${platform.name}-tab`}
+                  id={`#${platform.name !== "" && platform.name}`}
+                  
                 >
                   <div className="flex justify-between items-center">
                     <div>

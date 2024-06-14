@@ -29,22 +29,22 @@ export default function Add() {
   const [seniority_level, setSeniority_level] = useState<string>("");
   const [work_arrangement, setWork_arrangement] = useState<string>("");
   const [location_flexibility, setLocation_flexibility] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [tagInput, setTagInput] = useState<string>("");
+  // const [tags, setTags] = useState<string[]>([]);
+  // const [tagInput, setTagInput] = useState<string>("");
 
-  const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setTagInput(event.target.value);
-  };
+  // const handleTagInput = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setTagInput(event.target.value);
+  // };
 //  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
 //    setSelectedOption(event.target.value);
 //  };
-  const handleTagKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && tagInput.trim() !== "") {
-      event.preventDefault();
-      setTags([...tags, tagInput.trim()]);
-      setTagInput("");
-    }
-  };
+  // const handleTagKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+  //   if (event.key === "Enter" && tagInput.trim() !== "") {
+  //     event.preventDefault();
+  //     setTags([...tags, tagInput.trim()]);
+  //     setTagInput("");
+  //   }
+  // };
 
   
 
@@ -64,7 +64,7 @@ export default function Add() {
       company_url,
       company_logo,
       apply_url,
-      tags,
+      // tags,
       status,
       seniority_level,
       work_arrangement,
@@ -266,7 +266,7 @@ export default function Add() {
             </div>
 
             <div className="grid gap-6 mb-4 grid-cols-2 p-5 md:p-4">
-              <div className="col-span-2">
+              {/* <div className="col-span-2">
                 <label
                   htmlFor="name"
                   className="block mb-2 text-sm font-semibold text-gray-900"
@@ -291,7 +291,7 @@ export default function Add() {
                     </span>
                   ))}
                 </span>
-              </div>
+              </div> */}
               <div className="col-span-2">
                 <label
                   htmlFor="website"
